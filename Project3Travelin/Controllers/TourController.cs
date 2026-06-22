@@ -28,5 +28,11 @@ namespace Project3Travelin.Controllers
 
         }
 
+        public async Task<IActionResult> TourList()
+        {
+            var values = _tourService.GetAllTourAsync();
+            return View(values);
+        }
+
     }
 }
