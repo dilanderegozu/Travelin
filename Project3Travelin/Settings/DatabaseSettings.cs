@@ -1,6 +1,6 @@
 ﻿namespace Project3Travelin.Settings
 {
-    public interface DatabaseSettings:IDatabaseSettings
+    public class DatabaseSettings : IDatabaseSettings
     {
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
