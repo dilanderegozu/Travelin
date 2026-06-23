@@ -1,0 +1,263 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
+}
+<main class="p-container-padding pb-20">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h2 class="font-display-lg text-display-lg text-on-surface">Ana Sayfa</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Sisteme genel bakış ve performans özetini buradan takip edebilirsiniz.</p>
+        </header>
+        <!-- Statistics Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-8">
+            <!-- Stats Card 1 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl custom-shadow flex flex-col justify-between group hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start">
+                    <div class="p-3 bg-primary-fixed rounded-lg text-primary">
+                        <span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-green-600 bg-green-50 px-2 py-1 rounded text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                        12.5%
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="font-label-sm text-label-sm text-on-surface-variant">Toplam Satış</p>
+                    <p class="font-display-lg text-display-lg text-on-surface">₺428,500</p>
+                </div>
+            </div>
+            <!-- Stats Card 2 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl custom-shadow flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start">
+                    <div class="p-3 bg-surface-container-high rounded-lg text-on-surface">
+                        <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-on-surface-variant bg-surface-container-low px-2 py-1 rounded text-xs font-bold">
+                        Aktif
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="font-label-sm text-label-sm text-on-surface-variant">Aktif Rezervasyonlar</p>
+                    <p class="font-display-lg text-display-lg text-on-surface">156</p>
+                </div>
+            </div>
+            <!-- Stats Card 3 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl custom-shadow flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start">
+                    <div class="p-3 bg-secondary-fixed rounded-lg text-secondary">
+                        <span class="material-symbols-outlined" data-icon="group">group</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-secondary bg-secondary-fixed px-2 py-1 rounded text-xs font-bold">
+                        +24 Bugün
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="font-label-sm text-label-sm text-on-surface-variant">Yeni Müşteriler</p>
+                    <p class="font-display-lg text-display-lg text-on-surface">1,240</p>
+                </div>
+            </div>
+            <!-- Stats Card 4 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl custom-shadow flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start">
+                    <div class="p-3 bg-tertiary-fixed rounded-lg text-tertiary">
+                        <span class="material-symbols-outlined" data-icon="hotel_class">hotel_class</span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="font-label-sm text-label-sm text-on-surface-variant">Doluluk Oranı</p>
+                    <div class="flex items-center justify-between">
+                        <p class="font-display-lg text-display-lg text-on-surface">84%</p>
+                        <div class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden">
+                            <div class="h-full bg-primary" style="width: 84%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-8">
+            <!-- Sales Analysis (Line Chart Placeholder) -->
+            <div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl custom-shadow">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-headline-md text-headline-md">Aylık Satış Analizi</h3>
+                    <select class="text-label-sm border-outline-variant rounded-lg bg-surface focus:ring-primary">
+                        <option>Son 6 Ay</option>
+                        <option>Son 1 Yıl</option>
+                    </select>
+                </div>
+                <div class="h-64 flex items-end justify-between gap-2 pt-4">
+                    <!-- Simple Bar Chart UI -->
+                    <div class="flex-1 bg-primary-fixed hover:bg-primary-container transition-colors rounded-t-lg h-[40%]" title="Ocak"></div>
+                    <div class="flex-1 bg-primary-fixed hover:bg-primary-container transition-colors rounded-t-lg h-[65%]" title="Şubat"></div>
+                    <div class="flex-1 bg-primary-fixed hover:bg-primary-container transition-colors rounded-t-lg h-[50%]" title="Mart"></div>
+                    <div class="flex-1 bg-primary-fixed hover:bg-primary-container transition-colors rounded-t-lg h-[85%]" title="Nisan"></div>
+                    <div class="flex-1 bg-primary-fixed hover:bg-primary-container transition-colors rounded-t-lg h-[75%]" title="Mayıs"></div>
+                    <div class="flex-1 bg-primary-container rounded-t-lg h-[95%]" title="Haziran"></div>
+                </div>
+                <div class="flex justify-between mt-4 text-label-sm text-on-surface-variant px-1">
+                    <span>Oca</span><span>Şub</span><span>Mar</span><span>Nis</span><span>May</span><span>Haz</span>
+                </div>
+            </div>
+            <!-- Distribution (Donut Chart Placeholder) -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl custom-shadow flex flex-col">
+                <h3 class="font-headline-md text-headline-md mb-6">Rezervasyon Dağılımı</h3>
+                <div class="flex-1 flex items-center justify-center relative">
+                    <div class="w-40 h-40 rounded-full border-[12px] border-primary-container border-t-secondary-container border-l-tertiary border-r-surface-container-high animate-[spin_3s_ease-in-out_infinite_alternate]"></div>
+                    <div class="absolute flex flex-col items-center">
+                        <span class="text-body-md font-bold">156</span>
+                        <span class="text-[10px] text-on-surface-variant uppercase">Toplam</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-primary-container"></span>
+                        <span class="text-label-sm">Kültür (45%)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+                        <span class="text-label-sm">Doğa (30%)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-tertiary"></span>
+                        <span class="text-label-sm">Deniz (15%)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-surface-container-high"></span>
+                        <span class="text-label-sm">Diğer (10%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Section: Tables and Popularity -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+            <!-- Recent Reservations Table -->
+            <div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl custom-shadow overflow-hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-headline-md text-headline-md">Son Rezervasyonlar</h3>
+                    <button class="text-primary text-label-sm font-bold hover:underline">Tümünü Gör</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-surface-container-low text-table-header uppercase">
+                                <th class="p-3">Müşteri</th>
+                                <th class="p-3">Tur Adı</th>
+                                <th class="p-3">Tarih</th>
+                                <th class="p-3">Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-body-md divide-y divide-outline-variant">
+                            <tr class="hover:bg-surface-container transition-colors">
+                                <td class="p-3 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs">AY</div>
+                                    Ahmet Yılmaz
+                                </td>
+                                <td class="p-3">Ege Kıyıları &amp; Mavi Tur</td>
+                                <td class="p-3">12 Haz 2024</td>
+                                <td class="p-3">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">Onaylandı</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container transition-colors">
+                                <td class="p-3 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs">ES</div>
+                                    Elif Soylu
+                                </td>
+                                <td class="p-3">Kapadokya Masalı</td>
+                                <td class="p-3">14 Haz 2024</td>
+                                <td class="p-3">
+                                    <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs font-semibold">Bekliyor</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container transition-colors">
+                                <td class="p-3 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs">MK</div>
+                                    Murat Kaya
+                                </td>
+                                <td class="p-3">Likya Yolu Doğa Yürüyüşü</td>
+                                <td class="p-3">15 Haz 2024</td>
+                                <td class="p-3">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">Onaylandı</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container transition-colors">
+                                <td class="p-3 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs">DD</div>
+                                    Deniz Demir
+                                </td>
+                                <td class="p-3">Karadeniz Yayla Turu</td>
+                                <td class="p-3">18 Haz 2024</td>
+                                <td class="p-3">
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-semibold">İptal</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container transition-colors">
+                                <td class="p-3 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs">SC</div>
+                                    Selin Can
+                                </td>
+                                <td class="p-3">Efess Antik Kent Gezisi</td>
+                                <td class="p-3">20 Haz 2024</td>
+                                <td class="p-3">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">Onaylandı</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Popular Tours -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl custom-shadow">
+                <h3 class="font-headline-md text-headline-md mb-6">Popüler Turlar</h3>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <img class="w-14 h-14 rounded-lg object-cover" data-alt="A scenic panoramic view of blue hot air balloons floating over the fairy chimneys of Cappadocia, Turkey during a golden sunset. High-contrast, vibrant orange and purple sky, professional travel photography style for a high-end luxury dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0IiGEvzA1Ad0SKCUtdkxuD6mQPrKMuT7gD5t4r_FlFMn_UGQCmdrdJlMPRNYg_CRFi3HzAfrOz9FPZQxr0EyauWlARPsgMQZs-Si-W0qt8ddK_mtLIF-Od0WtyeYWkJTX-UbPrIvbCkZtjoIepPafwECHq2z5KIQN_EBZZJAsg6NVHxa5iNXEFKezBIVjas4TW02fENMnlNiGNC79x8XnumQLGj6aDbBJvUURI07IJYP50b0-dA447fJhLBYRV0NFVkn94jk-_0c" />
+                        <div class="flex-1">
+                            <p class="font-body-md font-semibold text-on-surface">Kapadokya Masalı</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 98%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-primary">98%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img class="w-14 h-14 rounded-lg object-cover" data-alt="A serene turquoise bay on the Lycian Way in Turkey, with ancient ruins near the water edge and lush pine trees. Mediterranean bright daylight, crystal clear water, minimalist and high-end aesthetics with a focus on travel luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9G1CqIyhJaVL-9M4H2fURvFJmw7ewanrkRA--XMmtr3XfqZSRB3IY1NsGF3ZUZhpoHXyxKpbJLo86T4U_0dcobdKIeEYyJxF9sOASvMiqAuwBinSNt_wGb5DXv_s5lm2cwdM-h1nxKFQ9qIODnTe-V8B6gqmPJRpAlJq_XdcXCM0N8XHocVMR-_uZtn0cahbru_5MYFCrjxSV26phVwKmOht60KoBXqTSODmmd8r3eZui8DQMeGY5NBfc4JDT0n55kTEyVBxO-Cg" />
+                        <div class="flex-1">
+                            <p class="font-body-md font-semibold text-on-surface">Likya Yolu Yürüyüşü</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 82%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-primary">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img class="w-14 h-14 rounded-lg object-cover" data-alt="A lush, misty green plateau in the Black Sea region of Turkey, with traditional wooden houses and clouds drifting between mountain peaks. Refreshing cool tones, high-detail landscape, professional corporate travel marketing visual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0pONDQMe4q5zNJB589HYnePx4I5Zu8uUWld9ScCrH2HeGsAS-W0hxQaInlUsOrQ7vWP9ei3ZE_K9FAwz2Ezwl0oKMxdKHY75rFD_GUyZmRsyDoyhMEkNfZolbkm5zAN_LAqL4TyknFwnSZ9nChvKF6wCcpxSDuVbeBH2kUBiN1dL9I7YB4hDb_X_DO3zvYpwzSEdhySWs_Y7lEVRjk6x4ZX9lONgd3PQ1Piz98ndC6rKWT4m3AxNO4xM_JL_PHCH4TrfWyzF3JOE" />
+                        <div class="flex-1">
+                            <p class="font-body-md font-semibold text-on-surface">Karadeniz Yaylaları</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 74%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-primary">74%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img class="w-14 h-14 rounded-lg object-cover" data-alt="The grand Library of Celsus in Ephesus, Turkey, illuminated by warm afternoon light. Intricate architectural details of the ancient Roman pillars against a clear blue sky. Professional historical site photography, clean and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqS9mgS1_w4N-uq9ajRcOg6kRkXjR8ET2AUggTUMC8X7AbFA6SzdNspfSC4kgW8ZQg39QNd-8iI0Jyjga6mXIvSuSxaj3jPYIufAolsFOrPqtk_F285i7yq3gNxaFv8MKdabJiq4gkguHU5aiE4fRHDQV4YmDYynpHJ9Fe0p35nSksL3C4u1AKzMj8sdm1iuf71oiXMiLAYMbnrBjJWwvuMpp-qJIxXdcCD_uv2x-ZntwzMGPRwe7WzvSfg5wVyTlhoFBF5RMNcV0" />
+                        <div class="flex-1">
+                            <p class="font-body-md font-semibold text-on-surface">Efes Antik Turu</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 61%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-primary">61%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>

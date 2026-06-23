@@ -1,0 +1,302 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
+}
+  <div class="p-container-padding flex-1 space-y-8">
+            <!-- Page Header & Date Picker -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="font-display-lg text-display-lg text-primary">Satış Raporları</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant">Finansal performansı, satış trendlerini ve gelir dağılımını analiz edin.</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white p-2 rounded-xl border border-outline-variant shadow-sm">
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container transition-colors">
+                        <span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+                        <span class="text-body-md font-medium">01 Oca 2024 - 31 Mar 2024</span>
+                    </div>
+                    <button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg font-body-md font-semibold flex items-center gap-2 shadow-md transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-sm">download</span>
+                        Dışa Aktar
+                    </button>
+                </div>
+            </div>
+            <!-- Summary Statistics Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-primary-fixed text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+                        </div>
+                        <span class="text-success text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">trending_up</span> 12%
+                        </span>
+                    </div>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Brüt Gelir</p>
+                    <h3 class="text-[28px] font-bold text-on-surface mt-1">₺1,240,500</h3>
+                    <p class="text-outline text-[12px] mt-2">Geçen döneme göre artış</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-secondary-fixed text-secondary rounded-xl group-hover:bg-secondary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">savings</span>
+                        </div>
+                        <span class="text-success text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">trending_up</span> 8.4%
+                        </span>
+                    </div>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Net Kar</p>
+                    <h3 class="text-[28px] font-bold text-on-surface mt-1">₺342,200</h3>
+                    <p class="text-outline text-[12px] mt-2">Komisyonlar sonrası net</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-tertiary-fixed text-tertiary rounded-xl group-hover:bg-tertiary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sell</span>
+                        </div>
+                        <span class="text-error text-xs font-bold bg-red-100 text-red-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">trending_down</span> 2.1%
+                        </span>
+                    </div>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Ort. Rezervasyon</p>
+                    <h3 class="text-[28px] font-bold text-on-surface mt-1">₺4,150</h3>
+                    <p class="text-outline text-[12px] mt-2">Kişi başı ortalama harcama</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-surface-container-highest text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                        </div>
+                        <span class="text-success text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">trending_up</span> 4%
+                        </span>
+                    </div>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Dönüşüm Oranı</p>
+                    <h3 class="text-[28px] font-bold text-on-surface mt-1">14.8%</h3>
+                    <p class="text-outline text-[12px] mt-2">Ziyaretçi / Satış oranı</p>
+                </div>
+            </div>
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+                <!-- Revenue Line Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-headline-md text-headline-md text-on-surface">Aylık Gelir Trendi</h4>
+                        <div class="flex gap-2">
+                            <button class="text-xs font-bold px-3 py-1 rounded-md bg-primary-container text-white">Gelir</button>
+                            <button class="text-xs font-bold px-3 py-1 rounded-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high">Gider</button>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-h-[300px] relative">
+                        <canvas id="revenueTrendChart"></canvas>
+                    </div>
+                </div>
+                <!-- Category Doughnut Chart -->
+                <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col">
+                    <h4 class="font-headline-md text-headline-md text-on-surface mb-6">Kategori Dağılımı</h4>
+                    <div class="flex-1 flex flex-col justify-center items-center relative">
+                        <canvas id="categoryDistributionChart"></canvas>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-4">
+                            <span class="text-label-sm font-label-sm text-outline uppercase tracking-tighter">Toplam</span>
+                            <span class="text-headline-md font-bold">₺1.2M</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[#003d9b]"></span>
+                            <span class="text-xs text-on-surface-variant font-medium">Kültür</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[#fd8b00]"></span>
+                            <span class="text-xs text-on-surface-variant font-medium">Macera</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[#404446]"></span>
+                            <span class="text-xs text-on-surface-variant font-medium">Gastronomi</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[#c3c6d6]"></span>
+                            <span class="text-xs text-on-surface-variant font-medium">Diğer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Selling Tours Table -->
+            <div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+                    <h4 class="font-headline-md text-headline-md text-on-surface">En Çok Satan Turlar</h4>
+                    <button class="text-primary font-semibold text-body-md hover:underline">Tümünü Gör</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-surface-container-low border-b border-outline-variant">
+                            <tr>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tur Adı</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Kategori</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Satış Adedi</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Toplam Gelir</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Trend</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-surface-container">
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img class="w-10 h-10 rounded-lg object-cover" data-alt="A cinematic aerial view of the Cappadocia landscape at dawn, with hundreds of colorful hot air balloons floating over the iconic fairy chimneys. The lighting is golden and soft, highlighting the unique volcanic rock formations. The mood is magical and adventurous, consistent with high-end travel marketing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-9aDJBahKz7ksZcMWgeW5cf5yuSM9QE6FBnXUFbLK3FgY8zHOCaZbee7HEdfqdSTSVhZBga24QAamzMkAYWttXCIrJhT0N9wQ36rd_UpF3SgYZJlHBlbk6-l_jOgFPzWyR9Nn-0lEFwe2QKVOLCXJgfslHHMnCBer1y8X58DhkWrov1vhtSVaHOhcLrXYUAZaHHAwP1ZEjN41_2MpR8_aImXSGsWZy8DDnhQ_8CWvrYSFaPwm9nXpLtrFaHPKE11Gm5tN_BQoSO0" />
+                                        <span class="font-body-md text-body-md font-semibold text-on-surface">Kapadokya Balon Turu</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-md text-on-surface-variant">Macera</td>
+                                <td class="px-6 py-4 text-body-md font-medium">154</td>
+                                <td class="px-6 py-4 text-body-md font-bold text-primary">₺616,000</td>
+                                <td class="px-6 py-4">
+                                    <span class="text-success flex items-center gap-1 text-sm font-bold">
+                                        <span class="material-symbols-outlined text-sm">trending_up</span> 18%
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Aktif</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img class="w-10 h-10 rounded-lg object-cover" data-alt="A high-contrast wide shot of the Hagia Sophia grand dome against a clear blue sky in Istanbul. The architecture is detailed and majestic, emphasizing historical significance and cultural depth. The lighting is sharp and natural, creating a bright and clean professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW_qR9Y12p4QPgm9H1WuMLG3Vy0rUiBBMW8XlDKOcztMKZW2jjcBsKuvwx3JmAIgO4mYvVi3X2cKx1BfoC1e8hNtC02BUwYxFDtFbtCG-R1scRgPL6ip8owrDZuAx8kAQGEJokEXURruclYe8kl6r5IvRz99q_-ISz_GlU1hgZA8OEq7qnlvPYRqKKnvca6nZ-k5HygFsHq5BVJhuIZVXQk8HTbdUnmoe5REaKSmurQn2ZZCAB_MQi6AFUsm02TwmVrA89c4N6nWw" />
+                                        <span class="font-body-md text-body-md font-semibold text-on-surface">İstanbul Kültür Mirası</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-md text-on-surface-variant">Kültür</td>
+                                <td class="px-6 py-4 text-body-md font-medium">210</td>
+                                <td class="px-6 py-4 text-body-md font-bold text-primary">₺315,000</td>
+                                <td class="px-6 py-4">
+                                    <span class="text-success flex items-center gap-1 text-sm font-bold">
+                                        <span class="material-symbols-outlined text-sm">trending_up</span> 5%
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Aktif</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img class="w-10 h-10 rounded-lg object-cover" data-alt="A vibrant and appetizing close-up of traditional Turkish Mezes served in a modern, upscale restaurant in Santorini. The colors are rich with greens, reds, and creamy whites. The shallow depth of field keeps the focus on the fresh ingredients, conveying a premium culinary experience. Bright, airy Mediterranean lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeJzZXNrqCFOQFhlQ5Fx_d82d1lROHdKZlAwW-rhD5WTSpRxsfTxmmnnOjvAmYkb43Eo62cZ2aPBi6JA9vBkzAkwklC-W_6sISc90gV8KQCFGfv8oBI1pNH5ygBecpXnef-4o0LBHZjaTh08wx7gcTznO01vK5Gpy9iYOHZbLExGlz0vxy53hG6Z1IgZ85CaCLxrEabGGx-ofdqDFrn-2YRC42RXVgTbOYYMJUTS7fcMPkcNtc5HAlIlmw1pbRVcfwc35bgeupKcs" />
+                                        <span class="font-body-md text-body-md font-semibold text-on-surface">Ege Gastronomi Yolu</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-md text-on-surface-variant">Gastronomi</td>
+                                <td class="px-6 py-4 text-body-md font-medium">92</td>
+                                <td class="px-6 py-4 text-body-md font-bold text-primary">₺184,000</td>
+                                <td class="px-6 py-4">
+                                    <span class="text-error flex items-center gap-1 text-sm font-bold">
+                                        <span class="material-symbols-outlined text-sm">trending_down</span> 3%
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">Kontenjan Az</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img class="w-10 h-10 rounded-lg object-cover" data-alt="A luxury yacht interior looking out towards the turquoise waters of the Mediterranean coast. The style is minimalist and elegant with neutral wood tones and clean white textiles. The mood is serene, exclusive, and high-end corporate leisure. The lighting is bright and summery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKz9lnJlRGqhRsQoCD8y5EVpn3R5Yjoml2aRO19i2DbZ1ihLT5wJ02nKkdNStyqOchO3mcLGR5Yp1K3YhwAaemMxaW7HjvFe7VMcU46jENcBpjafvAI14MNbJQf5A0qKGDA_5UpgCvlmS_MYyKf3rwjrE0Hka1yIRbCV_cj_zprJCS2qm95jyQYhIppNJSYFmwd_NHffn94i52cGhYUB_bc3d9pFS1KX6Y5nOdIFgEVc5Tgh5dnHo00tk_NDP5GGxuU85vzqyEoj4" />
+                                        <span class="font-body-md text-body-md font-semibold text-on-surface">Özel Yat Turu (Fethiye)</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-md text-on-surface-variant">Lüks</td>
+                                <td class="px-6 py-4 text-body-md font-medium">12</td>
+                                <td class="px-6 py-4 text-body-md font-bold text-primary">₺125,500</td>
+                                <td class="px-6 py-4">
+                                    <span class="text-success flex items-center gap-1 text-sm font-bold">
+                                        <span class="material-symbols-outlined text-sm">trending_up</span> 12%
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Aktif</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+     
+    </main>
+    <script>
+        // Revenue Trend Chart
+        const ctxRevenue = document.getElementById('revenueTrendChart').getContext('2d');
+        const revenueChart = new Chart(ctxRevenue, {
+        type: 'line',
+        data: {
+        labels: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz'],
+        datasets: [{
+        label: 'Gelir (₺)',
+        data: [120000, 190000, 150000, 250000, 280000, 320000],
+        borderColor: '#003d9b',
+        backgroundColor: 'rgba(0, 61, 155, 0.1)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#003d9b',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7
+        }]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+        legend: { display: false }
+        },
+        scales: {
+        y: {
+        beginAtZero: true,
+        grid: { borderDash: [5, 5], color: '#e7eeff' },
+        ticks: { color: '#737685', font: { family: 'Inter', size: 11 } }
+        },
+        x: {
+        grid: { display: false },
+        ticks: { color: '#737685', font: { family: 'Inter', size: 11 } }
+        }
+        }
+        }
+        });
+
+        // Category Distribution Chart
+        const ctxCategory = document.getElementById('categoryDistributionChart').getContext('2d');
+        const categoryChart = new Chart(ctxCategory, {
+        type: 'doughnut',
+        data: {
+        labels: ['Kültür', 'Macera', 'Gastronomi', 'Diğer'],
+        datasets: [{
+        data: [45, 30, 15, 10],
+        backgroundColor: ['#003d9b', '#fd8b00', '#404446', '#c3c6d6'],
+        borderWidth: 0,
+        hoverOffset: 15
+        }]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '75%',
+        plugins: {
+        legend: { display: false }
+        }
+        }
+        });
+
+        // Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+        row.addEventListener('mouseenter', () => {
+        row.style.transform = 'translateX(4px)';
+        row.style.transition = 'transform 0.2s ease-out';
+        });
+        row.addEventListener('mouseleave', () => {
+        row.style.transform = 'translateX(0)';
+        });
+        });
+    </script>

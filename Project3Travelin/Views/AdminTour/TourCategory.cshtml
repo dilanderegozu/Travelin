@@ -1,0 +1,230 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
+}
+<div class="p-container-padding space-y-6 flex-1">
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="font-display-lg text-display-lg text-on-surface">Tur Kategorileri</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Sistemdeki tüm tur kategorilerini yönetin ve yenilerini oluşturun.</p>
+                </div>
+                <button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-primary-container transition-all shadow-md active:scale-95">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    Yeni Kategori Ekle
+                </button>
+            </div>
+            <!-- Stats Overview - Bento Style -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4 transition-transform hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">category</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-sm text-label-sm">Toplam Kategori</p>
+                        <p class="text-2xl font-bold text-on-surface">12</p>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4 transition-transform hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-secondary-container/10 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined">tour</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-sm text-label-sm">Aktif Turlar</p>
+                        <p class="text-2xl font-bold text-on-surface">148</p>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4 transition-transform hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-600">
+                        <span class="material-symbols-outlined">check_circle</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-sm text-label-sm">Aktif Kategoriler</p>
+                        <p class="text-2xl font-bold text-on-surface">10</p>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4 transition-transform hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-error/10 flex items-center justify-center text-error">
+                        <span class="material-symbols-outlined">visibility_off</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-sm text-label-sm">Gizli Kategoriler</p>
+                        <p class="text-2xl font-bold text-on-surface">2</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Filters & Data Table Container -->
+            <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+                <!-- Filter Bar -->
+                <div class="p-4 border-b border-outline-variant flex flex-wrap gap-4 items-center justify-between">
+                    <div class="flex flex-wrap gap-2">
+                        <select class="bg-surface border border-outline-variant rounded-lg px-3 py-2 font-body-md text-body-md focus:ring-primary focus:border-primary transition-all">
+                            <option>Tüm Durumlar</option>
+                            <option>Aktif</option>
+                            <option>Pasif</option>
+                        </select>
+                        <select class="bg-surface border border-outline-variant rounded-lg px-3 py-2 font-body-md text-body-md focus:ring-primary focus:border-primary transition-all">
+                            <option>Sıralama: En Çok Tur</option>
+                            <option>Sıralama: A-Z</option>
+                            <option>Sıralama: Yeni Eklenen</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors border border-outline-variant text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        </button>
+                        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors border border-outline-variant text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px]">download</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Data Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-surface-container-low border-b border-outline-variant">
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Kategori Adı</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Açıklama</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-center">Tur Sayısı</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Durum</th>
+                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-outline-variant">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container">
+                                            <img class="w-full h-full object-cover" data-alt="A vibrant landscape photograph of snow-capped mountains reflected in a crystal-clear turquoise lake. The lighting is golden hour, casting a warm and inviting glow across the scene. The image represents outdoor adventure and nature tours, maintaining a high-quality travel industry aesthetic with rich blue and warm orange tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL3CG2WWJJc9JZAjXcdWfKlz50MNvd9u7ab-Xph5vEhUZdynW3buaP-stWSTmJ7bDgiYEGis4vWqjhyWALtCtyr6uaGSMPO_Qt8qy8IFrGgf9IxhcyQXdOmnld7Wb1vH3Px673gzElQ1rnKMfn7cHS_270sbgUKxVwcVsIx9sf-KUTKtUixoFVb5sSMNkrZd0Cr5qTmM0V4F_KrGH8ALXwsTaZ5xWn-PnMwrFojgzQf5M0dG8gtE61AIe5bHTBsj5-iXklTYGTwt4" />
+                                        </div>
+                                        <span class="font-semibold text-on-surface font-body-md">Doğa ve Macera</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-body-md text-on-surface-variant max-w-xs truncate">
+                                    Kamp, trekking ve ekstrem sporları içeren doğa turları kategorisi.
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold text-xs">42 Tur</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                        Aktif
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                                        <button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container">
+                                            <img class="w-full h-full object-cover" data-alt="An atmospheric photograph of an ancient cobblestone street in a historic European city at twilight. Warm lantern light glows against weathered stone walls, creating a sense of history and cultural depth. The color palette is composed of warm ambers and deep blues, reflecting a premium cultural tourism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAorUy9mXxYZvZb7DmcumbSNR7ZJyhY8fVpWgiU0EeVi_YbTjwDT7ImNOU8uFB7lkuCmgsU_s_Bwvtv2rvqYk6kaOKOiXnSHIjPyFTLlFJHNS9geSVKXW6rLJwBEG2dAzLnNkpGpzK2TLgg1oo8ia_x3cVYmI216CR0z81t0RCovEoQSuwm1dkrEn2ukBrCBeiQtc7Ib8CMxU5pmXTYUigd4yfVFAo_niaGzXIZI2PSxz-dLP0mfYbFQ3V89ch4kwuk8XGGt3YWtZU" />
+                                        </div>
+                                        <span class="font-semibold text-on-surface font-body-md">Kültür ve Tarih</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-body-md text-on-surface-variant max-w-xs truncate">
+                                    Müze ziyaretleri, antik kentler ve yerel kültür odaklı turlar.
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold text-xs">28 Tur</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                        Aktif
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                                        <button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container">
+                                            <img class="w-full h-full object-cover" data-alt="A clean, minimalist high-angle shot of a luxurious white yacht sailing on calm, deep blue ocean waters. The composition is simple and elegant, conveying a sense of exclusivity and high-end leisure. The lighting is bright and summery, focusing on clean whites and vibrant sea blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1NXHRl3ADJLHp8_VVMH_tlFYheSjV6RlmUnVKqFNdILpxuOz_8-xuQXJRm8MPIy7BuuBnPHp14hdXNgrClcYPx3HlDaE3T_eIApUGu4oiCsSLdM5TB07C1qk3prBh09zQOa0NFyD4B-OmDX8__ewWvZIXuiE2UxIYFIsiR8mJ5wUhQImZwwsjZGcvk2JwL17acraeabvV_p2adb9i6qcaNPlsjSbFyeCbYLMjfgs4RGd0Lr24X80e_NQrfxBPP1NQ9_2H9LIA0X8" />
+                                        </div>
+                                        <span class="font-semibold text-on-surface font-body-md">Deniz ve Yat</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-body-md text-on-surface-variant max-w-xs truncate">
+                                    Mavi tur, tekne kiralama ve ada gezileri paketleri.
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold text-xs">15 Tur</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                        Pasif
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                                        <button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container">
+                                            <img class="w-full h-full object-cover" data-alt="A top-down, artfully arranged gourmet dish featuring colorful fresh vegetables and fine dining elements on a dark, textured plate. The lighting is focused and dramatic, highlighting textures and colors. This image represents culinary and gastronomy tours with a sophisticated, high-end feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfAUbbysWlTC_aALp50pCFEzHI2f6bixSNjmV0tdSh3qaQLE3KYA8w7pDfTCwJGRuE_yGFGgb-ONtVvu3UoDG9-aTNDlOPeGvluyJPejCHCOoHSeavvn8gubgGo-2pBmGMN12l4oT37y2AAalMW6mKs5EvSi1Kqx1T2T6-5sKj6PthVM0Br0N-C2qsbYjPVAALc8gIulHvqzhTMtsargVIvQJS8s7FrvzcDs7eWt9jksfZT9AWW7DgwY0SvH2DezEpknBujYphKR4" />
+                                        </div>
+                                        <span class="font-semibold text-on-surface font-body-md">Gastronomi</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-body-md text-on-surface-variant max-w-xs truncate">
+                                    Yöresel lezzet durakları ve tadım turları.
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold text-xs">12 Tur</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                        Aktif
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                                        <button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+                    <p class="font-body-md text-body-md text-on-surface-variant">Toplam 12 sonuçtan 1-4 gösteriliyor</p>
+                    <div class="flex items-center gap-1">
+                        <button class="p-2 rounded hover:bg-surface-container text-on-surface-variant disabled:opacity-50" disabled="">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="w-8 h-8 rounded bg-primary text-on-primary font-semibold text-xs">1</button>
+                        <button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface-variant font-semibold text-xs">2</button>
+                        <button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface-variant font-semibold text-xs">3</button>
+                        <button class="p-2 rounded hover:bg-surface-container text-on-surface-variant">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </main>

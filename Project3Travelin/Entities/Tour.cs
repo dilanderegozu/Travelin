@@ -16,6 +16,7 @@ namespace Project3Travelin.Entities
         public int Capacity { get; set; }
         public DateTime TourDate { get; set; }
         public string DayNight { get; set; }
+        public Category Category { get; set; }
 
     }
 }

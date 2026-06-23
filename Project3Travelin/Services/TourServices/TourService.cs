@@ -49,5 +49,20 @@ namespace Project3Travelin.Services.TourServices
             var values = _mapper.Map<Tour>(updateTourDto);
             await _tourCollection.FindOneAndReplaceAsync(x=>x.TourId == updateTourDto.TourId, values);
         }
+        public async Task<List<ResultTourDto>> GetPagedToursAsync(int page, int pageSize)
+        {
+            var values = await _tourCollection
+                .Find(x => true)
+                .Skip((page - 1) * pageSize)   
+                .Limit(pageSize)               
+                .ToListAsync();
+
+            return _mapper.Map<List<ResultTourDto>>(values);
+        }
+
+        public async Task<long> GetTourCountAsync()
+        {
+            return await _tourCollection.CountDocumentsAsync(x => true);
+        }
     }
     }

@@ -28,11 +28,10 @@ namespace Project3Travelin.Controllers
 
         }
 
-        public async Task<IActionResult> TourList()
+        public async Task<IActionResult> TourList(int page = 1)
         {
-            var values = _tourService.GetAllTourAsync();
-            return View(values);
+            ViewBag.Page = page;
+            return View();
         }
-
     }
 }

@@ -1,0 +1,190 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
+}
+<!-- Calendar Container -->
+<div class="p-8 flex-1 flex flex-col gap-6 overflow-hidden">
+    <!-- Calendar Header Actions -->
+    <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+            <h2 class="text-display-lg font-display-lg text-on-background">Ekim 2024</h2>
+            <div class="flex items-center bg-surface-container-low p-1 rounded-lg border border-outline-variant">
+                <button class="p-1.5 hover:bg-surface-container rounded transition-colors">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="px-4 py-1.5 text-label-sm font-bold bg-white shadow-sm rounded transition-colors">Bugün</button>
+                <button class="p-1.5 hover:bg-surface-container rounded transition-colors">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="flex bg-surface-container-low rounded-lg p-1 border border-outline-variant">
+                <button class="px-4 py-1.5 text-label-sm font-bold bg-primary text-on-primary rounded-md shadow-sm">Ay</button>
+                <button class="px-4 py-1.5 text-label-sm font-medium text-on-surface-variant hover:bg-surface-container rounded-md">Hafta</button>
+                <button class="px-4 py-1.5 text-label-sm font-medium text-on-surface-variant hover:bg-surface-container rounded-md">Gün</button>
+            </div>
+            <button class="flex items-center gap-2 px-4 py-2.5 bg-surface-container-high text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors font-label-sm">
+                <span class="material-symbols-outlined text-lg">filter_list</span>
+                Filtrele
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Calendar Grid Wrapper -->
+    <div class="flex-1 bg-white rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant overflow-auto relative">
+        <!-- Weekday Headers -->
+        <div class="grid grid-cols-7 border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-10">
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Pzt</div>
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Sal</div>
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Çar</div>
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Per</div>
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Cum</div>
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Cmt</div>
+            <div class="py-3 text-center text-table-header text-on-surface-variant uppercase tracking-widest border-r border-outline-variant last:border-r-0">Paz</div>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="calendar-grid">
+            <!-- Önceki ay -->
+            <div class="p-2 border-r border-b border-outline-variant bg-surface-container-lowest/30 opacity-40">
+                <span class="text-label-sm text-on-surface-variant">30</span>
+            </div>
+            <!-- Gün 1 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer relative overflow-hidden">
+                <span class="text-label-sm text-on-surface-variant font-bold group-hover:text-primary transition-colors">1</span>
+                <div class="mt-2 space-y-1">
+                    <div class="bg-primary/10 border-l-2 border-primary px-2 py-1 rounded-sm cursor-pointer hover:bg-primary/20 transition-all flex flex-col gap-0.5" onclick="showTourPreview(1)">
+                        <span class="text-[10px] font-bold text-primary truncate uppercase">Kapadokya Balon</span>
+                        <span class="text-[9px] text-on-surface-variant">05:30 - 12 Kişi</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Gün 2 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+                <span class="text-label-sm text-on-surface-variant font-bold">2</span>
+            </div>
+            <!-- Gün 3 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+                <span class="text-label-sm text-on-surface-variant font-bold">3</span>
+                <div class="mt-2 space-y-1">
+                    <div class="bg-secondary/10 border-l-2 border-secondary px-2 py-1 rounded-sm hover:bg-secondary/20 transition-all">
+                        <span class="text-[10px] font-bold text-secondary truncate uppercase">Efes Turu</span>
+                    </div>
+                    <div class="bg-error/10 border-l-2 border-error px-2 py-1 rounded-sm hover:bg-error/20 transition-all">
+                        <span class="text-[10px] font-bold text-error truncate uppercase">VIP Transfer</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Gün 4 (Bugün) -->
+            <div class="p-2 border-r border-b border-outline-variant bg-primary-container/5 hover:bg-primary-container/10 transition-colors group cursor-pointer ring-1 ring-inset ring-primary/20">
+                <span class="flex items-center justify-center w-6 h-6 bg-primary text-white rounded-full text-label-sm font-bold">4</span>
+                <div class="mt-2 space-y-1">
+                    <div class="bg-primary/10 border-l-2 border-primary px-2 py-1 rounded-sm">
+                        <span class="text-[10px] font-bold text-primary truncate uppercase">Antalya Şehir</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Gün 5-7 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">5</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">6</span></div>
+            <div class="p-2 border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">7</span></div>
+            <!-- Gün 8-14 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">8</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+                <span class="text-label-sm text-on-surface-variant">9</span>
+                <div class="mt-2 bg-primary/10 border-l-2 border-primary px-2 py-1 rounded-sm">
+                    <span class="text-[10px] font-bold text-primary truncate uppercase">Pamukkale Ekspres</span>
+                </div>
+            </div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">10</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">11</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">12</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">13</span></div>
+            <div class="p-2 border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">14</span></div>
+            <!-- Gün 15-21 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">15</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">16</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+                <span class="text-label-sm text-on-surface-variant">17</span>
+                <div class="mt-2 bg-secondary/10 border-l-2 border-secondary px-2 py-1 rounded-sm">
+                    <span class="text-[10px] font-bold text-secondary truncate uppercase">Bursa Teleferik</span>
+                </div>
+            </div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">18</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">19</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">20</span></div>
+            <div class="p-2 border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">21</span></div>
+            <!-- Gün 22-28 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">22</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">23</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">24</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">25</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">26</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">27</span></div>
+            <div class="p-2 border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">28</span></div>
+            <!-- Gün 29-31 -->
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">29</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">30</span></div>
+            <div class="p-2 border-r border-b border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer"><span class="text-label-sm text-on-surface-variant">31</span></div>
+            <!-- Sonraki ay -->
+            <div class="p-2 border-r border-b border-outline-variant bg-surface-container-lowest/30 opacity-40"><span class="text-label-sm text-on-surface-variant">1</span></div>
+            <div class="p-2 border-r border-b border-outline-variant bg-surface-container-lowest/30 opacity-40"><span class="text-label-sm text-on-surface-variant">2</span></div>
+            <div class="p-2 border-r border-b border-outline-variant bg-surface-container-lowest/30 opacity-40"><span class="text-label-sm text-on-surface-variant">3</span></div>
+            <div class="p-2 border-b border-outline-variant bg-surface-container-lowest/30 opacity-40"><span class="text-label-sm text-on-surface-variant">4</span></div>
+        </div>
+
+        <!-- Floating Info Panel -->
+        <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] glass-panel rounded-2xl shadow-2xl p-6 z-50" id="tour-preview">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase tracking-wider">Kültür Turu</span>
+                    <h3 class="text-headline-md font-headline-md mt-1">Kapadokya Balon Seyri</h3>
+                </div>
+                <button class="p-1 hover:bg-black/5 rounded-full" onclick="closeTourPreview()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 text-body-md text-on-surface-variant">
+                    <span class="material-symbols-outlined text-primary">schedule</span>
+                    <span>1 Ekim 2024, 05:30 - 08:30</span>
+                </div>
+                <div class="flex items-center gap-3 text-body-md text-on-surface-variant">
+                    <span class="material-symbols-outlined text-primary">group</span>
+                    <span>12 Katılımcı / 16 Kapasite</span>
+                </div>
+                <div class="flex items-center gap-3 text-body-md text-on-surface-variant">
+                    <span class="material-symbols-outlined text-primary">person_pin_circle</span>
+                    <span>Rehber: Caner Özcan</span>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-black/5 flex gap-3">
+                <button class="flex-1 py-2.5 bg-primary text-on-primary rounded-lg font-bold text-body-md hover:shadow-lg transition-all">Detayları Gör</button>
+                <button class="px-3 py-2.5 bg-surface-container-highest text-primary rounded-lg hover:bg-surface-container-high transition-colors">
+                    <span class="material-symbols-outlined">edit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Legend -->
+    <div class="flex flex-wrap gap-6 items-center bg-white/50 p-4 rounded-xl border border-outline-variant">
+        <p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-wider">Kategoriler:</p>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-primary"></span>
+            <span class="text-body-md">Kültür Turları</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-secondary"></span>
+            <span class="text-body-md">Macera & Doğa</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-error"></span>
+            <span class="text-body-md">Özel Transferler</span>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay for Modal -->
+<div class="hidden fixed inset-0 bg-[#091E42]/50 backdrop-blur-sm z-40" id="modal-overlay" onclick="closeTourPreview()"></div>
+

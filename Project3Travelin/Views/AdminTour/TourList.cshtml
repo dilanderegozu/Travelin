@@ -1,0 +1,145 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
+}
+<div class="p-container-padding space-y-6 flex-1">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+            <h2 class="font-display-lg text-display-lg text-on-surface">Tur Listesi</h2>
+            <p class="text-body-lg text-on-surface-variant">Sistemde kayıtlı tüm turları görüntüleyebilir ve yönetebilirsiniz.</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <button class="flex items-center gap-2 px-4 py-2.5 bg-white border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-lg font-body-md font-semibold">
+                <span class="material-symbols-outlined">filter_list</span>
+                Filtrele
+            </button>
+            <button class="flex items-center gap-2 px-4 py-2.5 bg-white border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-lg font-body-md font-semibold">
+                <span class="material-symbols-outlined">download</span>
+                Excel'e Aktar
+            </button>
+            <button class="flex items-center gap-2 px-5 py-2.5 bg-primary-container text-white hover:bg-primary transition-colors rounded-lg font-body-md font-bold shadow-lg shadow-primary/20">
+                <span class="material-symbols-outlined">add</span>
+                Yeni Tur Ekle
+            </button>
+        </div>
+    </div>
+    <!-- Stat Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+        <div class="bg-white p-5 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">explore</span>
+            </div>
+            <div>
+                <p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Toplam Tur</p>
+                <p class="text-display-lg text-primary leading-none">124</p>
+            </div>
+        </div>
+        <div class="bg-white p-5 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                <span class="material-symbols-outlined">check_circle</span>
+            </div>
+            <div>
+                <p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Aktif Tur</p>
+                <p class="text-display-lg text-on-surface leading-none">86</p>
+            </div>
+        </div>
+        <div class="bg-white p-5 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
+                <span class="material-symbols-outlined">event_upcoming</span>
+            </div>
+            <div>
+                <p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Yaklaşan Turlar</p>
+                <p class="text-display-lg text-on-surface leading-none">12</p>
+            </div>
+        </div>
+        <div class="bg-white p-5 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-container">
+                <span class="material-symbols-outlined">group</span>
+            </div>
+            <div>
+                <p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Toplam Kapasite</p>
+                <p class="text-display-lg text-on-surface leading-none">2,450</p>
+            </div>
+        </div>
+    </div>
+    <!-- Table Container -->
+    <div class="bg-white rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-surface-container-low border-b border-outline-variant">
+                    <tr>
+                        <th class="p-4 w-12"><input class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox" /></th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Görsel</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tur Adı</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Ülke/Şehir</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Kapasite</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tur Tarihi</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Süre</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Durum</th>
+                        <th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-surface-container">
+                    <!-- Row 1 -->
+                    <tr class="hover:bg-surface-container-lowest transition-colors group">
+                        <td class="p-4"><input class="rounded border-outline-variant text-primary h-4 w-4" type="checkbox" /></td>
+                        <td class="p-4">
+                            <img class="w-12 h-12 rounded-lg object-cover shadow-sm" data-alt="A stunning aerial photograph of the turquoise coast of the Aegean Sea in Turkey, featuring white sandy beaches and ancient ruins under a clear blue sky. The lighting is bright and sunny, capturing the vibrant summer atmosphere of a luxury travel destination. Cinematic wide-angle shot with high contrast and saturated colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc7_Nl2ObaOGRaDWsx1ujMnqaCUhmRDCfgpvdar8Wa5uCkpnlhdFo34XIYiTfvtVcHbT24KPlqVhQ4IVKC3LA6eHi8p70bTia57kpBeHCiZfZI9XSJ3ddhezMYqJB0w8imKp9cOkGFuAa7C45PwboPbkpqGu1otCOURQf4n0PFk5Tdb4T0VOwTZur5nuidZUUBzGbC_K9mRlMLvTkjl_8RvOWhK7orslVrz2Z_N_6ApiLa75grfozyRG7EEM0dupsqSqYiX0OzSxI" />
+                        </td>
+                        <td class="p-4">
+                            <div class="flex flex-col">
+                                <span class="font-body-md font-bold text-on-surface">Ege Turu</span>
+                                <span class="text-label-sm text-primary">#TR-4421</span>
+                            </div>
+                        </td>
+                        <td class="p-4">
+                            <div class="flex flex-col">
+                                <span class="font-body-md text-on-surface">Türkiye</span>
+                                <span class="text-label-sm text-on-surface-variant">İzmir / Muğla</span>
+                            </div>
+                        </td>
+                        <td class="p-4 font-body-md">45 / 50</td>
+                        <td class="p-4 font-body-md">15 Haz 2024</td>
+                        <td class="p-4 font-body-md">5 Gün / 4 Gece</td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 text-label-sm font-bold">Devam Ediyor</span>
+                        </td>
+                        <td class="p-4 text-right">
+                            <div class="flex items-center justify-end gap-2">
+                                <a href="#"
+                                   class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors text-label-sm font-semibold">
+                                    <span class="material-symbols-outlined text-base">edit</span>
+                                    Güncelle
+                                </a>
+                                <a href= ="#"
+                                    class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors text-label-sm font-semibold"
+                                    onclick="return confirm('Bu turu silmek istediğinize emin misiniz?')">
+                                    <span class="material-symbols-outlined text-base">delete</span>
+                                    Sil
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+        <div class="p-4 border-t border-outline-variant flex items-center justify-between">
+            <p class="text-body-md text-on-surface-variant">Toplam 124 kayıttan 1-10 arası gösteriliyor</p>
+            <div class="flex items-center gap-2">
+                <button class="p-2 border border-outline-variant rounded hover:bg-surface-container transition-colors disabled:opacity-50"><span class="material-symbols-outlined">chevron_left</span></button>
+                <button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded font-bold">1</button>
+                <button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded transition-colors font-body-md">2</button>
+                <button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded transition-colors font-body-md">3</button>
+                <button class="p-2 border border-outline-variant rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+            </div>
+        </div>
+    </div>
+    <!-- Empty State / Loading Preview (Invisible by default, just as requested placeholder) -->
+    <div class="hidden space-y-4" id="loading-skeleton">
+        <div class="h-12 bg-surface-container-highest animate-pulse rounded-lg w-full"></div>
+        <div class="h-12 bg-surface-container-highest animate-pulse rounded-lg w-full"></div>
+        <div class="h-12 bg-surface-container-highest animate-pulse rounded-lg w-full"></div>
+    </div>
+</div>

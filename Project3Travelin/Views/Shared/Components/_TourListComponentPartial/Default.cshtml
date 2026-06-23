@@ -1,22 +1,29 @@
 ﻿@model List<ResultTourDto>
 @{
     Layout = null;
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 1;
 }
+
 <section class="trending pt-6 pb-0 bg-lgrey">
     <div class="container">
         <div class="list-results d-flex align-items-center justify-content-between">
             <div class="list-results-sort">
-                <p class="m-0">Showing 1-5 of 80 results</p>
+                <p class="m-0">@ViewBag.StartItem-@ViewBag.EndItem arası gösteriliyor, toplam @ViewBag.TotalCount sonuç bulundu</p>
             </div>
             <div class="click-menu d-flex align-items-center justify-content-between">
-                <div class="change-list f-active me-2"><a href="tour-list.html"><i class="fa fa-bars rounded"></i></a></div>
-                <div class="change-grid me-2"><a href="tour-grid.html"><i class="fa fa-th rounded"></i></a></div>
+                <div class="change-list f-active me-2">
+                    <a href="tour-list.html"><i class="fa fa-bars rounded"></i></a>
+                </div>
+                <div class="change-grid me-2">
+                    <a href="tour-grid.html"><i class="fa fa-th rounded"></i></a>
+                </div>
                 <div class="sortby d-flex align-items-center justify-content-between ml-2">
                     <select class="niceSelect">
-                        <option value="1">Sort By</option>
-                        <option value="2">Average rating</option>
-                        <option value="3">Price: low to high</option>
-                        <option value="4">Price: high to low</option>
+                        <option value="1">Sırala</option>
+                        <option value="2">Ortalama Puan</option>
+                        <option value="3">Fiyat: Düşükten Yükseğe</option>
+                        <option value="4">Fiyat: Yüksekten Düşüğe</option>
                     </select>
                 </div>
             </div>
@@ -30,7 +37,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-3">
                             <div class="trend-item2 rounded">
-                                <a href="tour-single.html" style="background-image: url(images/destination/destination17.jpg);"></a>
+                                <a href="tour-single.html" style="background-image: url(@item.ImageUrl);"></a>
                                 <div class="color-overlay"></div>
                             </div>
                         </div>
@@ -38,8 +45,14 @@
                             <div class="trend-content position-relative text-md-start text-center">
                                 <small>@item.DayNight</small>
                                 <h3 class="mb-1"><a href="tour-single.html">@item.Title</a></h3>
-                                <h6 class="theme mb-0"><i class="icon-location-pin"></i> @item.Country</h6>
-                                <p class="mt-4 mb-0">Taking Safety Measures <br><a href="#"><span class="theme"> Ücretsiz İptal</span></a></p>
+                                <h6 class="theme mb-0">
+                                    <i class="icon-location-pin"></i> @item.Country
+                                </h6>
+                                <p class="mt-4 mb-0">
+                                    @item.Description
+                                    <br />
+                                    <a href="#"><span class="theme">Ücretsiz İptal</span></a>
+                                </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3">
@@ -51,23 +64,53 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                 </div>
-                                <small>200 Reviews</small>
+                                <small>200 Değerlendirme</small>
                                 <div class="trend-price my-2">
-                                    <span class="mb-0">From</span>
-                                    <h3 class="mb-0">$125</h3>
-                                    <small>Per Adult</small>
+                                    <span class="mb-0">Başlangıç Fiyatı</span>
+                                    <h3 class="mb-0">₺125</h3>
+                                    <small>Kişi Başı</small>
                                 </div>
-                                <a href="tour-single.html" class="nir-btn">View Detail</a>
+                                <a href="tour-single.html" class="nir-btn">Detayları Gör</a>
                             </div>
                         </div>
                     </div>
                 </div>
             }
-       
 
-            <div class="text-center">
-                <a href="#" class="nir-btn">Load More <i class="fa fa-long-arrow-alt-right"></i></a>
-            </div>
+            @* SAYFALAMA *@
+            @if (totalPages > 1)
+            {
+                <div class="d-flex justify-content-center align-items-center gap-2 mt-4 mb-4">
+
+                    @* Önceki butonu *@
+                    @if (currentPage > 1)
+                    {
+                        <a href="/Tour/TourList?page=@(currentPage - 1)" class="nir-btn">
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                    }
+
+                    @* Sayfa numaraları *@
+                    @for (int i = Math.Max(1, currentPage - 2); i <= Math.Min(totalPages, currentPage + 2); i++)
+                    {
+                        <a href="/Tour/TourList?page=@i"
+                           class="nir-btn"
+                           style="@(i == currentPage ? "background:#e74c3c; color:white;" : "")">
+                            @i
+                        </a>
+                    }
+
+                    @* Sonraki butonu *@
+                    @if (currentPage < totalPages)
+                    {
+                        <a href="/Tour/TourList?page=@(currentPage + 1)" class="nir-btn">
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    }
+
+                </div>
+            }
+
         </div>
     </div>
 </section>

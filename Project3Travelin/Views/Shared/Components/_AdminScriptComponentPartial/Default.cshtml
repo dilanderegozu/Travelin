@@ -1,0 +1,60 @@
+﻿
+<script>
+    function toggleToast() {
+        const toast = document.getElementById('success-toast');
+        toast.classList.remove('translate-x-[150%]');
+        setTimeout(() => {
+            toast.classList.add('translate-x-[150%]');
+        }, 3000);
+    }
+
+    function toggleModal() {
+        const modal = document.getElementById('delete-modal');
+        modal.classList.toggle('hidden');
+        setTimeout(() => {
+            modal.firstElementChild.classList.toggle('scale-100');
+        }, 10);
+    }
+
+    // Simulating some rows with delete triggers
+    document.querySelectorAll('tbody tr').forEach(row => {
+        row.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            toggleModal();
+        });
+    });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("dropdown-btn");
+        const menu = document.getElementById("dropdown-menu");
+        const arrow = btn.querySelector(".arrow-icon");
+
+        btn.addEventListener("click", function () {
+            // Menüyü aç/kapat (Tailwind hidden sınıfını kaldır/ekle)
+            menu.classList.toggle("hidden");
+
+            // İsteğe bağlı: Ok ikonunu 180 derece döndür
+            arrow.classList.toggle("rotate-180");
+        });
+    });
+      function showTourPreview(id) {
+            document.getElementById('tour-preview').classList.remove('hidden');
+            document.getElementById('modal-overlay').classList.remove('hidden');
+        }
+
+        function closeTourPreview() {
+            document.getElementById('tour-preview').classList.add('hidden');
+            document.getElementById('modal-overlay').classList.add('hidden');
+        }
+          // Micro-interaction for hover effects on table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+        row.addEventListener('mouseenter', () => {
+        row.style.transform = 'translateX(4px)';
+        row.style.transition = 'transform 0.2s ease-out';
+        });
+        row.addEventListener('mouseleave', () => {
+        row.style.transform = 'translateX(0)';
+        });
+        });
+     
+</script>
