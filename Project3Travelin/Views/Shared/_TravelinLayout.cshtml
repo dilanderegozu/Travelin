@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+    
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Travelin - Travel Tour Booking HTML Templates</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <!-- Bootstrap core CSS -->
+    <link href="/travelin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--Custom CSS-->
+    <link href="/travelin/css/style.css" rel="stylesheet" type="text/css" />
+    <!--Plugin CSS-->
+    <link href="/travelin/css/plugin.css" rel="stylesheet" type="text/css" />
+
+    <!--Font Awesome-->
+
+    <link rel="stylesheet" href="/travelin/css/fontawesome.min.css" />
+
+    <link rel="stylesheet" href="/travelin/fonts/line-icons.css" type="text/css" />
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <!-- Preloader Ends -->
+    <!-- header starts -->
+    @await Component.InvokeAsync("_DashboardHeadeComponentPartial");
+ 
+    <!-- header ends -->
+    <div class="tet"></div>
+
+   @RenderBody()
+  
+
+    @await Component.InvokeAsync("_TourFooterComponentPartial")
+   
+    <!-- search popup -->
+    <div id="search1">
+        <button type="button" class="close">×</button>
+        <form>
+            <input type="search" value="" placeholder="type keyword(s) here" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+
+
+    <!-- *Scripts* -->
+    <script src="/travelin/js/jquery-3.5.1.min.js"></script>
+    <script src="/travelin/js/bootstrap.min.js"></script>
+    <script src="/travelin/js/fontawesome.min.js"></script>
+    <script src="/travelin/js/particles.js"></script>
+    <script src="/travelin/js/particlerun.js"></script>
+    <script src="/travelin/js/plugin.js"></script>
+    <script src="/travelin/js/main.js"></script>
+    <script src="/travelin/js/custom-swiper.js"></script>
+    <script src="/travelin/js/custom-nav.js"></script>
+    @RenderSection("Script",required:false)
+</body>
+</html>

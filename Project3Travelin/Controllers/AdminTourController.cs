@@ -43,6 +43,26 @@ namespace Project3Travelin.Controllers
             var values = await _categoryService.GetAllCategoryAsync();
             return View(values);
         }
+
+        public async Task<IActionResult> DeleteTour(string id)
+        {
+            await _tourService.DeleteTourAsync(id);
+            return RedirectToAction("TourList");
+
+        }
+
+        public async Task<IActionResult> UpdateTour(string id)
+        {
+            var values = await _tourService.GetTourByIdAsync(id);
+            return View(values);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateTour(UpdateTourDto updateTourDto)
+        {
+            await _tourService.UpdateTourAsync(updateTourDto);
+            return RedirectToAction("TourList");
+        }
         public IActionResult TourDate()
         {
             return View();
