@@ -28,7 +28,9 @@ namespace Project3Travelin.Services.CommentServices
         public async Task CreateCommentAsync(CreateCommentDto createCommentDto)
         {
             var values = _mapper.Map<Comment>(createCommentDto);
-             await _commentCollection.InsertOneAsync(values);
+            values.CommentDate = DateTime.Now;
+            values.IsStatus = true;
+            await _commentCollection.InsertOneAsync(values);
         }
 
         public async Task DeleteCommentAsync(string id)
@@ -54,5 +56,31 @@ namespace Project3Travelin.Services.CommentServices
             await _commentCollection.FindOneAndReplaceAsync(x=>x.CommentId == updateCommentDto.CommentId, values);
         
     }
+        public async Task<int> GetCommentCountByTourAsync(string id)
+        {
+            return (int)await _commentCollection
+                .CountDocumentsAsync(x => x.TourId == id && x.IsStatus);
+        }
+
+        public async Task<double> GetAverageScoreByTourAsync(string id)
+        {
+            var comments = await _commentCollection
+                .Find(x => x.TourId == id && x.IsStatus)
+                .ToListAsync();
+
+            if (!comments.Any())
+                return 0;
+
+            return comments.Average(x => x.Score);
+        }
+        public async Task<List<ResultCommentDto>> GetCommentsByTourAsync(string tourId)
+        {
+            var values = await _commentCollection
+                .Find(x => x.TourId == tourId && x.IsStatus)
+                .SortByDescending(x => x.CommentDate)
+                .ToListAsync();
+
+            return _mapper.Map<List<ResultCommentDto>>(values);
+        }
     }
 }

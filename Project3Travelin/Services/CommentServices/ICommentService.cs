@@ -9,5 +9,8 @@ namespace Project3Travelin.Services.CommentServices
         Task UpdateCommentAsync(UpdateCommentDto updateCommentDto);
         Task DeleteCommentAsync(string id);
         Task<GetCommentByIdDto> GetCommentByIdAsync(string id);
+        Task<int> GetCommentCountByTourAsync(string tourId);
+        Task<double> GetAverageScoreByTourAsync(string id);
+        Task<List<ResultCommentDto>> GetCommentsByTourAsync(string tourId);
     }
 }

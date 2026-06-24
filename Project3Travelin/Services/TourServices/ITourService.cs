@@ -12,5 +12,6 @@ namespace Project3Travelin.Services.TourServices
 
         Task<List<ResultTourDto>> GetPagedToursAsync(int page, int pageSize);  
         Task<long> GetTourCountAsync();
+        Task<List<ResultTourDto>> GetFilteredToursAsync(string? city, string? categoryId, string? dayNight);
     }
 }

@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_TravelinLayout.cshtml";
+}
+
+<section class="py-10" style="min-height: 60vh; display:flex; align-items:center;">
+    <div class="container text-center">
+        <div class="mb-4">
+            <i class="icon-location-pin theme" style="font-size: 64px; opacity:0.4;"></i>
+        </div>
+        <h2 class="mb-2">Aradığınız Kriterlere Uygun Tur Bulunamadı</h2>
+        <p class="mb-4" style="color:#888; max-width:480px; margin:0 auto;">
+            Seçtiğiniz rota, kategori veya süreye uygun tur şu an mevcut değil.
+            Farklı bir kombinasyon deneyebilir ya da tüm turlarımıza göz atabilirsiniz.
+        </p>
+        <a href="/Tour/TourList" class="nir-btn me-2">Tüm Turları Gör</a>
+        <a href="/Dashboard/Index" class="nir-btn" style="background:#f5f5f5; color:#333;">Geri Dön</a>
+    </div>
+</section>

@@ -1,8 +1,10 @@
-﻿@model List<ResultTourDto>
+﻿
+@model List<ResultTourDto>
 @{
     Layout = null;
     int currentPage = ViewBag.CurrentPage ?? 1;
     int totalPages = ViewBag.TotalPages ?? 1;
+
 }
 
 <section class="trending pt-6 pb-0 bg-lgrey">
@@ -13,10 +15,10 @@
             </div>
             <div class="click-menu d-flex align-items-center justify-content-between">
                 <div class="change-list f-active me-2">
-                    <a href="tour-list.html"><i class="fa fa-bars rounded"></i></a>
+                    <a href="/Tour/TourList"><i class="fa fa-bars rounded"></i></a>
                 </div>
                 <div class="change-grid me-2">
-                    <a href="tour-grid.html"><i class="fa fa-th rounded"></i></a>
+                    <a href="/Tour/TourListGrid"><i class="fa fa-th rounded"></i></a>
                 </div>
                 <div class="sortby d-flex align-items-center justify-content-between ml-2">
                     <select class="niceSelect">
@@ -58,19 +60,26 @@
                         <div class="col-lg-3 col-md-3">
                             <div class="trend-content text-md-end text-center">
                                 <div class="rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
+                                    @for (int star = 1; star <= 5; star++)
+                                    {
+                                        if (star <= (int)Math.Round(item.Rating))
+                                        {
+                                            <span class="fa fa-star" style="color: #f5a623;"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="fa fa-star" style="color: #d1d5db;"></span>
+                                        }
+                                    }
                                 </div>
-                                <small>200 Değerlendirme</small>
+                        
+                                <small>@ViewBag.CommentCount  Değerlendirme</small>
                                 <div class="trend-price my-2">
-                                    <span class="mb-0">Başlangıç Fiyatı</span>
-                                    <h3 class="mb-0">₺125</h3>
+                                    <span class="mb-0">Fiyat</span>
+                                    <h3 class="mb-0">@item.Price @item.Currency</h3>
                                     <small>Kişi Başı</small>
                                 </div>
-                                <a href="tour-single.html" class="nir-btn">Detayları Gör</a>
+                                <a href="/Tour/TourDetail/@item.TourId" class="nir-btn">Detayları Gör</a>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<ResultTourDto>
+@using Project3Travelin.Dtos.CategoryDtos
+@{
     Layout = "~/Views/Shared/_TravelinLayout.cshtml";
 }
 
@@ -13,55 +15,63 @@
                         <h1>Hayalinizdeki Tatili Planlamaya Hemen Başlayın!</h1>
                         <p class="mb-4">Travelin ile kültür turlarından doğa keşiflerine, deniz tatillerinden macera dolu rotalara kadar yüzlerce seçeneği keşfedin. Size en uygun turu seçin ve unutulmaz anılar biriktirmeye başlayın.</p>
                         <div class="book-form">
-                            <div class="row d-flex align-items-center justify-content-between">
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <div class="input-box">
-                                            <select class="niceSelect">
-                                                <option value="1">Destinasyon Seçin</option>
-                                                <option value="2">Kapadokya</option>
-                                                <option value="3">İstanbul</option>
-                                                <option value="4">Antalya</option>
-                                                <option value="5">Karadeniz</option>
-                                            </select>
+                            <form action="/Dashboard/Search" method="get">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <div class="input-box">
+                                                <select name="city" class="niceSelect">
+                                                    <option value="">Rota Seçiniz</option>
+                                                    @foreach (var item in Model.GroupBy(x => x.City).Select(x => x.First()))
+                                                    {
+                                                        <option value="@item.City">@item.City</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <div class="input-box">
+                                                <input type="date" name="date" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <div class="input-box">
+                                                <select name="categoryId" class="niceSelect">
+                                                    <option value="">Kategori Seçiniz</option>
+                                                    @foreach (var item in (List<ResultCategoryDto>)ViewBag.Categories)
+                                                    {
+                                                        <option value="@item.CategoryId">@item.CategoryName</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <div class="input-box">
+                                                <select name="dayNight" class="niceSelect">
+                                                    <option value="">Tur Süresi</option>
+                                                    @foreach (var item in Model.GroupBy(x => x.DayNight).Select(x => x.First()))
+                                                    {
+                                                        <option value="@item.DayNight">@item.DayNight</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-0 text-center">
+                                            <button type="submit" class="nir-btn w-100" onclick="this.form.submit()">
+                                                <i class="fa fa-search mr-2"></i> Turları Ara
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <div class="input-box">
-                                            <input type="date" name="date" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <div class="input-box">
-                                            <select class="niceSelect">
-                                                <option value="1">Tur Türü</option>
-                                                <option value="2">Kültür Turu</option>
-                                                <option value="3">Aile Turu</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-group">
-                                        <div class="input-box">
-                                            <select class="niceSelect">
-                                                <option value="1">Tur Süresi</option>
-                                                <option value="2">5 Gün</option>
-                                                <option value="3">7 Gün</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group mb-0 text-center">
-                                        <a href="#" class="nir-btn w-100"><i class="fa fa-search mr-2"></i>   Turları Ara</a>
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

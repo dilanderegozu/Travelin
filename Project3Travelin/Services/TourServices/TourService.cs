@@ -11,14 +11,17 @@ namespace Project3Travelin.Services.TourServices
     {
         private readonly IMapper _mapper;
         private readonly IMongoCollection<Tour> _tourCollection;
+        private readonly IMongoCollection<Category> _categoryCollection;
 
-        public TourService(IMapper mapper,IDatabaseSettings _databaseSettings)
+        public TourService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
-            var client= new MongoClient(_databaseSettings.ConnectionString);
-            var database=client.GetDatabase(_databaseSettings.DatabaseName);
+            var client = new MongoClient(_databaseSettings.ConnectionString);
+            var database = client.GetDatabase(_databaseSettings.DatabaseName);
+
             _tourCollection = database.GetCollection<Tour>(_databaseSettings.TourCollectionName);
+            _categoryCollection = database.GetCollection<Category>(_databaseSettings.CategoryCollectionName);
+
             _mapper = mapper;
-          
         }
 
         public async Task CreateTourAsync(CreateTourDto createTourDto)
@@ -34,8 +37,17 @@ namespace Project3Travelin.Services.TourServices
 
         public async Task<List<ResultTourDto>> GetAllTourAsync()
         {
-            var values = await _tourCollection.Find(x => true).ToListAsync();
-            return _mapper.Map<List<ResultTourDto>>(values);
+            var tours = await _tourCollection.Find(x => true).ToListAsync();
+            var categories = await _categoryCollection.Find(x => true).ToListAsync();
+
+            foreach (var tour in tours)
+            {
+                tour.CategoryName = categories
+                    .FirstOrDefault(c => c.CategoryId == tour.CategoryId)
+                    ?.CategoryName;
+            }
+
+            return _mapper.Map<List<ResultTourDto>>(tours);
         }
 
         public async Task<GetTourByIdDto> GetTourByIdAsync(string id)
@@ -63,6 +75,22 @@ namespace Project3Travelin.Services.TourServices
         public async Task<long> GetTourCountAsync()
         {
             return await _tourCollection.CountDocumentsAsync(x => true);
+        }
+        public async Task<List<ResultTourDto>> GetFilteredToursAsync(string? city, string? categoryId, string? dayNight)
+        {
+            var filter = Builders<Tour>.Filter.Empty;
+
+            if (!string.IsNullOrEmpty(city))
+                filter &= Builders<Tour>.Filter.Eq(x => x.City, city);
+
+            if (!string.IsNullOrEmpty(categoryId))
+                filter &= Builders<Tour>.Filter.Eq(x => x.CategoryId, categoryId);
+
+            if (!string.IsNullOrEmpty(dayNight))
+                filter &= Builders<Tour>.Filter.Eq(x => x.DayNight, dayNight);
+
+            var values = await _tourCollection.Find(filter).ToListAsync();
+            return _mapper.Map<List<ResultTourDto>>(values);
         }
     }
     }

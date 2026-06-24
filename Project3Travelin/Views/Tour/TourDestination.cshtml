@@ -1,0 +1,66 @@
+﻿@model List<ResultTourDto>
+@{
+    Layout = "~/Views/Shared/_TravelinLayout.cshtml";
+}
+<!-- BreadCrumb Starts -->
+<section class="breadcrumb-main pb-20 pt-14" style="background-image: url(/travelin/images/bg/bg1.jpg);">
+    <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url(/travelin/images/shape8.png);"></div>
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h1 class="mb-3">Tur Rotaları</h1>
+                <nav aria-label="breadcrumb" class="d-block">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Tur</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Aktif Tur Rotaları</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+<!-- top Destination starts -->
+<section class="trending pb-0 pt-6">
+    <div class="container">
+        <div class="section-title mb-6 w-50 mx-auto text-center">
+            <h4 class="mb-1 theme1">Popüler Rotalar</h4>
+            <h2 class="mb-1">En Gözde <span class="theme">Seyahat Destinasyonları</span></h2>
+            <p>Hayalinizdeki tatil için en çok tercih edilen şehirleri ve eşsiz rotaları keşfedin.</p>
+        </div>
+        <div class="row align-items-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                    <div class="trend-item1">
+                        <div class="trend-image position-relative rounded">
+                            <img src="@item.ImageUrl" alt="@item.City">
+
+                            <div class="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                                <div class="trend-content-title">
+                                    <h5 class="mb-0">
+                                        <a href="#" class="theme1">
+                                            @item.Country
+                                        </a>
+                                    </h5>
+
+                                    <h3 class="mb-0 white">
+                                        @item.City
+                                    </h3>
+                                </div>
+
+                                <span class="white bg-theme p-1 px-2 rounded">
+                                    @item.DayNight
+                                </span>
+                            </div>
+
+                            <div class="color-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- top Destination ends -->

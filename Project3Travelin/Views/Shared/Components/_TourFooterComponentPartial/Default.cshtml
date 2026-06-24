@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ResultCategoryDto>
+@{
     Layout = null;
 }
 <footer class="pt-20 pb-4" style="background-image: url(/travelin/images/background_pattern.png);">
@@ -37,12 +38,10 @@
                     <div class="footer-links">
                         <h3 class="white">Kategoriler</h3>
                         <ul>
-                            <li><a href="about-us.html">Yurt İçi Turlar</a></li>
-                            <li><a href="about-us.html">Yurt Dışı Turlar</a></li>
-                            <li><a href="about-us.html">Kültür Turları</a></li>
-                            <li><a href="about-us.html">Doğa Turları</a></li>
-                            <li><a href="about-us.html">Tatil Rotaları</a></li>
-                            <li><a href="about-us.html">Özel Organizasyonlar</a></li>
+                            @foreach (var item in Model.GroupBy(x=>x.CategoryName).Select(x=>x.First()))
+                            {
+                                <li><a href="">@item.CategoryName</a></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -84,20 +83,11 @@
                             <select class="niceSelect rounded">
                                 <option>Türkçe</option>
                                 <option>English</option>
-                                <option>Deutsch</option>
-                                <option>Русский</option>
-                                <option>العربية</option>
+                              
                             </select>
                         </li>
 
-                        <li class="w-25">
-                            <select class="niceSelect rounded">
-                                <option>₺ TRY</option>
-                                <option>$ USD</option>
-                                <option>€ EUR</option>
-                                <option>£ GBP</option>
-                            </select>
-                        </li>
+                       
                     </ul>
                 </div>
             </div>
