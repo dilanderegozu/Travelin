@@ -24,8 +24,7 @@
 - `[Authorize]` ve `[Authorize(Roles = "Admin")]` ile uç nokta koruması
 - Cookie tabanlı kimlik doğrulama ve password hashing
 
- <img width="1876" height="863" alt="Ekran görüntüsü 2026-06-25 234120" src="https://github.com/user-attachments/assets/bb6eca24-ad64-4173-bce8-69a7e618be9c" />
-<img width="1877" height="870" alt="Ekran görüntüsü 2026-06-25 234135" src="https://github.com/user-attachments/assets/06f30a37-ae40-4c56-a1da-9a102d98d54e" />
+
 
 
 ### 🧳 Müşteri Paneli
@@ -59,17 +58,8 @@
 
 ## 📸 Kimlik Doğrulama
 
-> 💡 **Login ve Register görsellerini buraya ekle:**
-> GitHub'da bu README'yi düzenlerken aşağıdaki satırların altına,
-> görselleri sürükle-bırak ile yükle veya Issues üzerinden upload et.
-
-<!-- LOGIN GÖRSELİNİ BURAYA EKLE -->
-<!-- <img src="BURAYA_LOGIN_GORSEL_URL" width="49%" /> -->
-
-<!-- REGISTER GÖRSELİNİ BURAYA EKLE -->
-<!-- <img src="BURAYA_REGISTER_GORSEL_URL" width="49%" /> -->
-
----
+ <img width="1876" height="863" alt="Ekran görüntüsü 2026-06-25 234120" src="https://github.com/user-attachments/assets/bb6eca24-ad64-4173-bce8-69a7e618be9c" />
+<img width="1877" height="870" alt="Ekran görüntüsü 2026-06-25 234135" src="https://github.com/user-attachments/assets/06f30a37-ae40-4c56-a1da-9a102d98d54e" />
 
 ## 📸 Müşteri Sitesi
 
