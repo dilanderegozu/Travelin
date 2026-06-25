@@ -1,0 +1,35 @@
+﻿@model AppUser
+
+@if (Model != null)
+{
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" style="text-decoration:none; color:inherit;">
+            <i class="fas fa-user-circle me-1"></i>
+            @Model.FirstName @Model.LastName
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <a class="dropdown-item" asp-controller="Reservation" asp-action="Index">
+                    <i class="fas fa-calendar-check me-2"></i> Rezervasyonlarım
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form method="post" asp-action="Logout" asp-controller="Account">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="dropdown-item text-danger">
+                        <i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login"
+       class="d-flex align-items-center gap-1"
+       style="text-decoration:none; color:inherit; font-size:14px; font-weight:500;">
+        <i class="icon-user"></i> Giriş Yap / Kayıt Ol
+    </a>
+}

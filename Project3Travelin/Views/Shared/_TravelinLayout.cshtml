@@ -32,7 +32,7 @@
     </div>
     <!-- Preloader Ends -->
     <!-- header starts -->
-    @await Component.InvokeAsync("_DashboardHeadeComponentPartial");
+    @await Component.InvokeAsync("_DashboardHeadeComponentPartial")
  
     <!-- header ends -->
     <div class="tet"></div>
@@ -51,7 +51,32 @@
         </form>
     </div>
 
+ 
+    <script>
+            function switchTab(name) {
+                document.getElementById('pane-login').style.display = name === 'login' ? 'block' : 'none';
+                document.getElementById('pane-register').style.display = name === 'register' ? 'block' : 'none';
 
+                const loginBtn = document.getElementById('tab-login');
+                const registerBtn = document.getElementById('tab-register');
+
+                if (name === 'login') {
+                    loginBtn.style.background = '#fff';
+                    loginBtn.style.border = '0.5px solid #e0e0e0';
+                    loginBtn.style.color = '#111';
+                    registerBtn.style.background = 'transparent';
+                    registerBtn.style.border = 'none';
+                    registerBtn.style.color = '#6b7280';
+                } else {
+                    registerBtn.style.background = '#fff';
+                    registerBtn.style.border = '0.5px solid #e0e0e0';
+                    registerBtn.style.color = '#111';
+                    loginBtn.style.background = 'transparent';
+                    loginBtn.style.border = 'none';
+                    loginBtn.style.color = '#6b7280';
+                }
+            }
+    </script>
 
     <!-- *Scripts* -->
     <script src="/travelin/js/jquery-3.5.1.min.js"></script>

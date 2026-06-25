@@ -48,11 +48,12 @@
                             <li class="search-main"><a href="#search1" class="mt_search"><i class="fa fa-search"></i></a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
-                    <div class="register-login d-flex align-items-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-3">
-                            <i class="icon-user"></i> Giriş Yap / Kayıt Ol
+                    <div class="register-login d-flex align-items-center gap-3">
+                        @await Component.InvokeAsync("NavbarUser")
+                        <a asp-controller="Reservation" asp-action="Index"
+                           class="nir-btn white">
+                            <i class="fas fa-calendar-check me-1"></i> Rezervasyon
                         </a>
-                        <a href="~/travelin/booking.html" class="nir-btn white">Rezervasyon</a>
                     </div>
 
                     <div id="slicknav-mobile"></div>

@@ -301,6 +301,47 @@
 
             <div class="col-lg-4 ps-lg-4">
                 <div class="sidebar-sticky sticky1">
+                    <!-- Rezervasyon Kutusu — tabs-navbar'dan önce ekle -->
+                    <div class="bg-white rounded p-4 mb-4 box-shadow" style="border:0.5px solid #e0e0e0;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <p class="mb-0" style="font-size:12px; color:#9ca3af;">Fiyatı</p>
+                                <h3 class="mb-0" style="color:#1D9E75; font-weight:600;">@Model.Price ₺</h3>
+                            </div>
+                            <div class="text-end">
+                                <div class="rating">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <span class="fa fa-star @(i <= (int)Math.Round(Model.Rating) ? "checked" : "")"
+                                              style="font-size:12px;"></span>
+                                    }
+                                </div>
+                                <small style="color:#9ca3af;">@ViewBag.CommentCount yorum</small>
+                            </div>
+                        </div>
+                        <div class="border-t pt-3 mb-3">
+                            <div class="d-flex justify-content-between mb-2" style="font-size:13px;">
+                                <span style="color:#6b7280;"><i class="fas fa-clock me-1"></i> Süre</span>
+                                <span style="font-weight:500;">@Model.DayNight Gün</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2" style="font-size:13px;">
+                                <span style="color:#6b7280;"><i class="fas fa-map-marker-alt me-1"></i> Konum</span>
+                                <span style="font-weight:500;">@Model.City</span>
+                            </div>
+                            <div class="d-flex justify-content-between" style="font-size:13px;">
+                                <span style="color:#6b7280;"><i class="fas fa-calendar-alt me-1"></i> Tur Tarihi</span>
+                                <span style="font-weight:500;">@Model.TourDate</span>
+                            </div>
+                        </div>
+                        <a asp-controller="Reservation" asp-action="Create" asp-route-tourId="@Model.TourId"
+                           class="nir-btn w-100 text-center d-block"
+                           style="padding:12px; font-size:14px; font-weight:500;">
+                            <i class="fas fa-calendar-check me-2"></i> Rezervasyon Yap
+                        </a>
+                        <p class="text-center mt-2 mb-0" style="font-size:11px; color:#9ca3af;">
+                            <i class="fas fa-shield-alt me-1"></i> Ücretsiz iptal · Anında onay
+                        </p>
+                    </div>
                     <div class="tabs-navbar bg-lgrey mb-4 bordernone rounded overflow-hidden">
                         <div class="row">
                             <div class="col-md-12">

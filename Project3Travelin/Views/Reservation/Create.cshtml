@@ -1,0 +1,237 @@
+﻿@model Project3Travelin.Dtos.ReservationDtos.CreateReservationDto
+@{
+    Layout = "~/Views/Shared/_TravelinLayout.cshtml";
+    ViewData["Title"] = "Rezervasyon Oluştur";
+}
+
+<!-- BreadCrumb -->
+<section class="breadcrumb-main pb-20 pt-14" style="background-image: url(/travelin/images/bg/bg1.jpg);">
+    <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url(/travelin/images/shape8.png);"></div>
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h1 class="mb-3">Rezervasyon Oluştur</h1>
+                <nav aria-label="breadcrumb" class="d-block">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Dashboard/Index">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item"><a href="/Tour/TourList">Turlar</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Rezervasyon</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+
+<section class="trending pt-6 pb-6 bg-lgrey">
+    <div class="container">
+        <form method="post" asp-action="Create" asp-controller="Reservation">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="TourId">
+            <input type="hidden" asp-for="UserId">
+
+            <div class="row">
+                <!-- Sol: Form -->
+                <div class="col-lg-8 mb-4">
+                    <div class="bg-white rounded p-4 mb-4" style="border:0.5px solid #e0e0e0;">
+                        <h4 class="border-b pb-2 mb-4">Kişisel Bilgiler</h4>
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger mb-3" style="font-size:13px;">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p class="mb-0">@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">Ad</label>
+                                    <input asp-for="FirstName" type="text" class="form-control"
+                                           style="font-size:13px; border:0.5px solid #e0e0e0;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">Soyad</label>
+                                    <input asp-for="LastName" type="text" class="form-control"
+                                           style="font-size:13px; border:0.5px solid #e0e0e0;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">E-posta</label>
+                                    <input asp-for="Email" type="email" class="form-control"
+                                           style="font-size:13px; border:0.5px solid #e0e0e0;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">Telefon</label>
+                                    <input asp-for="Phone" type="text" class="form-control"
+                                           style="font-size:13px; border:0.5px solid #e0e0e0;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded p-4 mb-4" style="border:0.5px solid #e0e0e0;">
+                        <h4 class="border-b pb-2 mb-4">Tur Detayları</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">Tur Tarihi</label>
+                                    <input asp-for="TourDate" type="date" class="form-control"
+                                           style="font-size:13px; border:0.5px solid #e0e0e0;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">Kişi Sayısı</label>
+                                    <input asp-for="PersonCount" type="number" min="1" max="20" class="form-control"
+                                           style="font-size:13px; border:0.5px solid #e0e0e0;">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group mb-3">
+                                    <label style="font-size:13px; color:#6b7280; font-weight:500;">Notunuz (İsteğe bağlı)</label>
+                                    <textarea asp-for="Note" rows="3" class="form-control"
+                                              style="font-size:13px; border:0.5px solid #e0e0e0; resize:none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded p-4" style="border:0.5px solid #e0e0e0;">
+                        <h4 class="border-b pb-2 mb-4">Ödeme Yöntemi</h4>
+                        <div class="row g-2 mb-4">
+                            <div class="col-6 col-md-3">
+                                <label class="d-flex flex-column align-items-center justify-content-center p-3 rounded"
+                                       style="border:0.5px solid #e0e0e0; cursor:pointer; font-size:12px; font-weight:500; gap:6px;">
+                                    <input type="radio" name="PaymentMethod" value="Kredi Kartı" checked style="accent-color:#1D9E75;">
+                                    <i class="fas fa-credit-card" style="font-size:20px; color:#1D9E75;"></i>
+                                    Kredi Kartı
+                                </label>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="d-flex flex-column align-items-center justify-content-center p-3 rounded"
+                                       style="border:0.5px solid #e0e0e0; cursor:pointer; font-size:12px; font-weight:500; gap:6px;">
+                                    <input type="radio" name="PaymentMethod" value="Havale" style="accent-color:#1D9E75;">
+                                    <i class="fas fa-university" style="font-size:20px; color:#6b7280;"></i>
+                                    Havale / EFT
+                                </label>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="d-flex flex-column align-items-center justify-content-center p-3 rounded"
+                                       style="border:0.5px solid #e0e0e0; cursor:pointer; font-size:12px; font-weight:500; gap:6px;">
+                                    <input type="radio" name="PaymentMethod" value="PayPal" style="accent-color:#1D9E75;">
+                                    <i class="fab fa-paypal" style="font-size:20px; color:#003087;"></i>
+                                    PayPal
+                                </label>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="d-flex flex-column align-items-center justify-content-center p-3 rounded"
+                                       style="border:0.5px solid #e0e0e0; cursor:pointer; font-size:12px; font-weight:500; gap:6px;">
+                                    <input type="radio" name="PaymentMethod" value="Kapıda" style="accent-color:#1D9E75;">
+                                    <i class="fas fa-money-bill-wave" style="font-size:20px; color:#6b7280;"></i>
+                                    Kapıda Ödeme
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="d-flex align-items-start gap-2"
+                                   style="font-size:12px; color:#6b7280; cursor:pointer; line-height:1.5;">
+                                <input type="checkbox" style="accent-color:#1D9E75; margin-top:2px; flex-shrink:0;">
+                                <span>
+                                    <a href="#" style="color:#1D9E75;">Kullanım koşullarını</a> ve
+                                    <a href="#" style="color:#1D9E75;">gizlilik politikasını</a> okudum, kabul ediyorum.
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="nir-btn w-100"
+                                style="padding:12px; font-size:14px; font-weight:500;">
+                            <i class="fas fa-check-circle me-2"></i> Rezervasyonu Tamamla
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sağ: Özet -->
+                <div class="col-lg-4 mb-4">
+                    <div class="sidebar-sticky">
+                        <div class="bg-white rounded p-4 mb-4" style="border:0.5px solid #e0e0e0;">
+                            <h4 class="border-b pb-2 mb-3">Rezervasyon Özeti</h4>
+                            <div class="p-3 rounded mb-3" style="background:#f9fafb;">
+                                <p class="mb-1" style="font-size:11px; color:#9ca3af;">Tur</p>
+                                <p class="mb-0" style="font-size:13px; font-weight:500;">@ViewBag.TourTitle</p>
+                            </div>
+                            <table class="w-100" style="font-size:13px;">
+                                <tr style="border-bottom:0.5px solid #f0f0f0;">
+                                    <td class="py-2" style="color:#6b7280;">Kişi Başı Ücret</td>
+                                    <td class="py-2 text-end" style="font-weight:500;">
+                                        @ViewBag.TourPrice ₺
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom:0.5px solid #f0f0f0;">
+                                    <td class="py-2" style="color:#6b7280;">Kişi Sayısı</td>
+                                    <td class="py-2 text-end" style="font-weight:500;" id="person-count-display">
+                                        —
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2" style="color:#6b7280;">Toplam Ücret</td>
+                                    <td class="py-2 text-end" style="font-weight:500; color:#1D9E75;" id="total-price">
+                                        —
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="bg-white rounded p-4 mb-4" style="border:0.5px solid #e0e0e0;">
+                            <h4 class="border-b pb-2 mb-3">İptal Politikası</h4>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-shield-alt mt-1" style="color:#1D9E75; font-size:18px; flex-shrink:0;"></i>
+                                <p class="mb-0" style="font-size:12px; color:#6b7280; line-height:1.6;">
+                                    Tur tarihinden 3 gün öncesine kadar ücretsiz iptal hakkınız bulunmaktadır.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded p-4" style="border:0.5px solid #e0e0e0;">
+                            <h4 class="border-b pb-2 mb-3">Yardıma mı ihtiyacınız var?</h4>
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="fas fa-phone" style="color:#1D9E75;"></i>
+                                <span style="font-size:13px;">+90 212 123 45 67</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fas fa-envelope" style="color:#1D9E75;"></i>
+                                <span style="font-size:13px;">info@travelin.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Script {
+    <script>
+        const pricePerPerson = @ViewBag.TourPrice;
+
+        const personInput = document.querySelector('[name="PersonCount"]');
+        const personDisplay = document.getElementById('person-count-display');
+        const totalDisplay = document.getElementById('total-price');
+
+        personInput.addEventListener('input', function () {
+            const count = parseInt(this.value) || 0;
+            personDisplay.textContent = count + ' Kişi';
+            totalDisplay.textContent = (count * pricePerPerson).toLocaleString('tr-TR') + ' ₺';
+        });
+    </script>
+}
