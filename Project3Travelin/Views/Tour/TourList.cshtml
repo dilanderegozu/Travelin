@@ -34,8 +34,34 @@
     </div>
 
 
+<div id="google_translate_element" style="display:none;"></div>
+
+
 
 <script>
+    function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'tr,en',
+    autoDisplay: false
+    }, 'google_translate_element');
+    }
+
+    function changeLanguage(lang) {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+    localStorage.setItem('lang', lang);
+    }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const lang = localStorage.getItem('lang');
+    if (lang && lang !== 'tr') {
+    setTimeout(() => changeLanguage(lang), 1500);
+    }
+    });
     function switchTab(name) {
         document.getElementById('pane-login').style.display = name === 'login' ? 'block' : 'none';
         document.getElementById('pane-register').style.display = name === 'register' ? 'block' : 'none';
@@ -63,6 +89,7 @@
 
 
     <!-- *Scripts* -->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="~/travelin/js/jquery-3.5.1.min.js"></script>
     <script src="~/travelin/js/bootstrap.min.js"></script>
     <script src="~/travelin/js/fontawesome.min.js"></script>

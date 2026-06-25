@@ -12,5 +12,6 @@ namespace Project3Travelin.Services.CommentServices
         Task<int> GetCommentCountByTourAsync(string tourId);
         Task<double> GetAverageScoreByTourAsync(string id);
         Task<List<ResultCommentDto>> GetCommentsByTourAsync(string tourId);
+        Task ApproveCommentAsync(string id);
     }
 }

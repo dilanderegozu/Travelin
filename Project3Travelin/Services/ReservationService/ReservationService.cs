@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using Project3Travelin.Dtos.ReservationDtos;
 using Project3Travelin.Entities;
+using Project3Travelin.Services.TourServices;
 using Project3Travelin.Settings;
 
 namespace Project3Travelin.Services.ReservationServices
@@ -9,14 +10,15 @@ namespace Project3Travelin.Services.ReservationServices
     public class ReservationService : IReservationService
     {
         private readonly IMongoCollection<Reservation> _reservations;
+        private readonly IMongoCollection<Tour> _tours;
 
         public ReservationService(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
             _reservations = database.GetCollection<Reservation>("Reservations");
+            _tours = database.GetCollection<Tour>("Tours");
         }
-
         public async Task CreateReservationAsync(CreateReservationDto dto)
         {
             var reservation = new Reservation
@@ -44,11 +46,33 @@ namespace Project3Travelin.Services.ReservationServices
                 .ToListAsync();
         }
 
-        public async Task<List<Reservation>> GetAllReservationsAsync()
+        public async Task<List<ResultReservationDto>> GetAllReservationsAsync()
         {
-            return await _reservations
-                .Find(_ => true)
-                .ToListAsync();
+            var reservations = await _reservations.Find(_ => true).ToListAsync();
+            var result = new List<ResultReservationDto>();
+
+            foreach (var r in reservations)
+            {
+                var tour = await _tours.Find(t => t.TourId == r.TourId).FirstOrDefaultAsync();
+                result.Add(new ResultReservationDto
+                {
+                    Id = r.Id,
+                    UserId = r.UserId,
+                    TourId = r.TourId,
+                    TourName = tour?.Title ?? "Bilinmiyor",
+                    FirstName = r.FirstName,
+                    LastName = r.LastName,
+                    Email = r.Email,
+                    Phone = r.Phone,
+                    TourDate = r.TourDate,
+                    PersonCount = r.PersonCount,
+                    Note = r.Note,
+                    Status = r.Status,
+                    CreatedAt = r.CreatedAt
+                });
+            }
+
+            return result;
         }
 
         public async Task<Reservation> GetReservationByIdAsync(string id)

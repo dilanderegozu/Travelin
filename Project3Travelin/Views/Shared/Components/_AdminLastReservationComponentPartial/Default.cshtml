@@ -1,0 +1,44 @@
+﻿@model List<ResultReservationDto>
+
+<div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl custom-shadow overflow-hidden">
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="font-headline-md text-headline-md">Son Rezervasyonlar</h3>
+        <button class="text-primary text-label-sm font-bold hover:underline">Tümünü Gör</button>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-surface-container-low text-table-header uppercase">
+                    <th class="p-3">Müşteri</th>
+                    <th class="p-3">Tur Adı</th>
+                    <th class="p-3">Tarih</th>
+                    <th class="p-3">Durum</th>
+                </tr>
+            </thead>
+            <tbody class="text-body-md divide-y divide-outline-variant">
+
+                @foreach(var item in Model)
+                {
+                    <tr class="hover:bg-surface-container transition-colors">
+                        <td class="p-3 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs"> @($"{item.FirstName[0]}{item.LastName[0]}")</div>
+                           @item.FirstName @item.LastName
+                        </td>
+                        <td class="p-3">@item.TourName</td>
+                        <td class="p-3">@item.TourDate</td>
+                        <td class="p-3">
+                            <span class="px-2 py-1 rounded-full text-xs font-semibold
+                                @(item.Status == "Onaylandı" ? "bg-green-100 text-green-800" :
+                                    item.Status == "İptal" ? "bg-red-100 text-red-800" :
+                                    "bg-amber-100 text-amber-800")">
+                                @item.Status
+                            </span>
+                        </td>
+                    </tr>
+                }
+              
+
+            </tbody>
+        </table>
+    </div>
+</div>

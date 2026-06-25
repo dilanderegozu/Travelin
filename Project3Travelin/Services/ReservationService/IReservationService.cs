@@ -7,7 +7,7 @@ namespace Project3Travelin.Services.ReservationServices
     {
         Task CreateReservationAsync(CreateReservationDto dto);
         Task<List<Reservation>> GetReservationsByUserIdAsync(string userId);
-        Task<List<Reservation>> GetAllReservationsAsync();
+        Task<List<ResultReservationDto>> GetAllReservationsAsync();
         Task<Reservation> GetReservationByIdAsync(string id);
         Task UpdateReservationStatusAsync(string id, string status);
         Task DeleteReservationAsync(string id);

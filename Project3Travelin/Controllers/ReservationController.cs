@@ -37,7 +37,7 @@ namespace Project3Travelin.Controllers
             if (user == null)
                 return RedirectToAction("Login", "Account");
 
-            // Tur bilgilerini çek
+         
             var tour = await _tourService.GetTourByIdAsync(tourId);
 
             ViewBag.TourTitle = tour?.Title;

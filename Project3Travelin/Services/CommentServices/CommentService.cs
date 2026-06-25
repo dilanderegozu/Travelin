@@ -25,12 +25,12 @@ namespace Project3Travelin.Services.CommentServices
 
         }
 
-        public async Task CreateCommentAsync(CreateCommentDto createCommentDto)
+        public async Task CreateCommentAsync(CreateCommentDto dto)
         {
-            var values = _mapper.Map<Comment>(createCommentDto);
-            values.CommentDate = DateTime.Now;
-            values.IsStatus = true;
-            await _commentCollection.InsertOneAsync(values);
+            var comment = _mapper.Map<Comment>(dto);
+            comment.IsStatus = false;
+            comment.CommentDate = DateTime.Now;
+            await _commentCollection.InsertOneAsync(comment);
         }
 
         public async Task DeleteCommentAsync(string id)
@@ -81,6 +81,11 @@ namespace Project3Travelin.Services.CommentServices
                 .ToListAsync();
 
             return _mapper.Map<List<ResultCommentDto>>(values);
+        }
+        public async Task ApproveCommentAsync(string id)
+        {
+            var update = Builders<Comment>.Update.Set(x => x.IsStatus, true);
+            await _commentCollection.UpdateOneAsync(x => x.CommentId == id, update);
         }
     }
 }

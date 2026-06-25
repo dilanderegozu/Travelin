@@ -67,6 +67,7 @@ namespace Project3Travelin.Entities
 
         // Harita Boylam Bilgisi
         public double Longitude { get; set; }
+        public bool IsStatus { get; set; }
     }
 
     public class TourPlan

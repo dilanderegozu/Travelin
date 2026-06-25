@@ -55,5 +55,7 @@ namespace Project3Travelin.Dtos.TourDtos
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+
+        public bool IsStatus { get; set; }
     }
 }

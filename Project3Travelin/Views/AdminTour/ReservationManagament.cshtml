@@ -1,235 +1,143 @@
-﻿@{
+﻿@model List<Project3Travelin.Dtos.ReservationDtos.ResultReservationDto>
+@{
     Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
 }
-    <!-- Main Canvas -->
 
-        <!-- Header Section -->
-        <section class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<main class="p-container-padding pb-20 flex-1">
+    <section class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+        <div>
+            <h2 class="font-display-lg text-display-lg text-on-surface mb-1">Rezervasyon Yönetimi</h2>
+            <p class="text-on-surface-variant font-body-lg text-body-lg">Tüm rezervasyonları görüntüleyin ve durumlarını güncelleyin.</p>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-2xl border border-outline-variant/30 flex flex-col gap-4">
+            <div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">confirmation_number</span>
+            </div>
             <div>
-                <h2 class="font-display-lg text-display-lg text-on-surface mb-1">Rezervasyon Yönetimi</h2>
-                <p class="text-on-surface-variant font-body-lg text-body-lg">Tüm rezervasyonları görüntüleyin, durumlarını güncelleyin ve ödemeleri takip edin.</p>
+                <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Toplam Rezervasyon</p>
+                <h3 class="text-2xl font-extrabold text-on-surface">@ViewBag.TotalReservations</h3>
             </div>
-            <div class="flex gap-3">
-                <button class="bg-white border border-outline-variant text-on-surface-variant px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-surface-container transition-all shadow-soft">
-                    <span class="material-symbols-outlined">download</span> Dışa Aktar
-                </button>
-                <button class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:brightness-110 transition-all shadow-soft">
-                    <span class="material-symbols-outlined">add</span> Yeni Kayıt
-                </button>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-outline-variant/30 flex flex-col gap-4">
+            <div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined">pending_actions</span>
             </div>
-        </section>
-        <!-- Stats Grid -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-2xl shadow-soft border border-outline-variant/30 flex flex-col gap-4">
-                <div class="flex justify-between items-start">
-                    <div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
-                    </div>
-                    <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full text-label-sm font-bold flex items-center">
-                        <span class="material-symbols-outlined text-[16px]">trending_up</span> +12%
-                    </span>
-                </div>
-                <div>
-                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Toplam Rezervasyon</p>
-                    <h3 class="text-display-lg text-2xl font-extrabold text-on-surface">1,240</h3>
-                </div>
+            <div>
+                <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Onay Bekleyen</p>
+                <h3 class="text-2xl font-extrabold text-on-surface">@ViewBag.PendingReservations</h3>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-soft border border-outline-variant/30 flex flex-col gap-4">
-                <div class="flex justify-between items-start">
-                    <div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Bekleyen İşlemler</p>
-                    <h3 class="text-display-lg text-2xl font-extrabold text-on-surface">42</h3>
-                </div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-outline-variant/30 flex flex-col gap-4">
+            <div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">verified</span>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-soft border border-outline-variant/30 flex flex-col gap-4">
-                <div class="flex justify-between items-start">
-                    <div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Onaylananlar</p>
-                    <h3 class="text-display-lg text-2xl font-extrabold text-on-surface">1,158</h3>
-                </div>
+            <div>
+                <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Onaylananlar</p>
+                <h3 class="text-2xl font-extrabold text-on-surface">@ViewBag.ApprovedReservations</h3>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-soft border border-outline-variant/30 flex flex-col gap-4">
-                <div class="flex justify-between items-start">
-                    <div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Toplam Gelir</p>
-                    <h3 class="text-display-lg text-2xl font-extrabold text-on-surface">₺842.500</h3>
-                </div>
-            </div>
-        </section>
-        <!-- Filters & Content -->
-        <section class="bg-white rounded-2xl shadow-soft border border-outline-variant/30 overflow-hidden">
-            <!-- Filter Bar -->
-            <div class="p-6 border-b border-outline-variant/30 flex flex-wrap gap-4 items-center justify-between">
-                <div class="flex flex-wrap gap-3">
-                    <div class="relative min-w-[200px]">
-                        <label class="absolute -top-2 left-3 bg-white px-1 text-[10px] text-primary font-bold uppercase tracking-tight">Durum</label>
-                        <select class="w-full border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary appearance-none bg-no-repeat bg-[right_10px_center] cursor-pointer">
-                            <option>Tüm Durumlar</option>
-                            <option>Onaylandı</option>
-                            <option>Beklemede</option>
-                            <option>İptal Edildi</option>
-                        </select>
-                    </div>
-                    <div class="relative min-w-[200px]">
-                        <label class="absolute -top-2 left-3 bg-white px-1 text-[10px] text-primary font-bold uppercase tracking-tight">Tarih Aralığı</label>
-                        <input class="w-full border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary" type="date" />
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 text-on-surface-variant font-body-md">
-                    <span>Sırala:</span>
-                    <button class="font-bold text-primary flex items-center gap-1 hover:underline">
-                        Son Eklenen <span class="material-symbols-outlined text-[18px]">expand_more</span>
-                    </button>
-                </div>
-            </div>
-            <!-- Table Container -->
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-surface-container-low">
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Rezervasyon ID</th>
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Müşteri &amp; Tur</th>
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tarih</th>
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-center">Kişi</th>
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tutar</th>
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Durum</th>
-                            <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">İşlemler</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-outline-variant/20">
-                        <!-- Row 1 -->
+        </div>
+    </section>
+
+    <section class="bg-white rounded-2xl border border-outline-variant/30 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-surface-container-low">
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Müşteri</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tur</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tarih</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-center">Kişi</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Durum</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/20">
+                    @foreach (var item in Model)
+                    {
                         <tr class="hover:bg-surface-container-low/50 transition-colors group">
-                            <td class="px-6 py-4 font-bold text-primary">#TRV-8942</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
-                                        <img class="w-full h-full object-cover" data-alt="A cinematic aerial view of the Cappadocia landscape at sunrise with hundreds of colorful hot air balloons floating over ancient fairy chimneys. The lighting is warm and golden, reflecting a luxury travel aesthetic with deep blues and oranges. High-end professional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxauWYu5YC68VROPM8-nt815rL6SzppQC9fnshQhpbozd1TpOzxv0bkk6eMYVhd1N783qbTqsHwWP4FpKYtusJKhLVocmywkasm_6GptPiFZbfuWCZ4rfV4SZZjAcpJ8FyHR5ObsGXcb1QDHu0vKweg-PFhh298bkewzSuTOiRBAiakHWIcDnQrcNZxPJJZ2TzyFeLWT_W6IW3F0BOFoNGpx1oNlN9ygfoFbnSGIscfGKRXuRIQMd5JaJDS7rF6sLLyQNR4yuOQ5o" />
+                                    <div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary text-xs">
+                                        @(item.FirstName?[0].ToString())@(item.LastName?[0].ToString())
                                     </div>
                                     <div>
-                                        <p class="font-bold text-on-surface">Ahmet Yılmaz</p>
-                                        <p class="text-on-surface-variant text-label-sm">Kapadokya Gün Doğumu Turu</p>
+                                        <p class="font-bold text-on-surface text-sm">@item.FirstName @item.LastName</p>
+                                        <p class="text-on-surface-variant text-xs">@item.Email</p>
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-on-surface-variant text-body-md">14 Mar 2024</td>
-                            <td class="px-6 py-4 text-on-surface text-center font-semibold">2</td>
-                            <td class="px-6 py-4 font-bold text-on-surface">₺4.250</td>
+                            <td class="px-6 py-4 text-on-surface-variant text-body-md">@item.TourName</td>
+                            <td class="px-6 py-4 text-on-surface-variant text-body-md">@item.TourDate.ToString("dd MMM yyyy")</td>
+                            <td class="px-6 py-4 text-on-surface text-center font-semibold">@item.PersonCount</td>
                             <td class="px-6 py-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Onaylandı</span>
+                                @if (item.Status == "Onaylandı")
+                                {
+                                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Onaylandı</span>
+                                }
+                                else if (item.Status == "İptal")
+                                {
+                                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800">İptal</span>
+                                }
+                                else
+                                {
+                                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Beklemede</span>
+                                }
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button class="p-2 hover:bg-primary-fixed rounded-lg text-primary transition-colors" title="Detaylar">
-                                        <span class="material-symbols-outlined text-[20px]">visibility</span>
-                                    </button>
-                                    <button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant transition-colors" title="Düzenle">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                                    </button>
-                                    <button class="p-2 hover:bg-error-container rounded-lg text-error transition-colors" title="İptal">
-                                        <span class="material-symbols-outlined text-[20px]">cancel</span>
-                                    </button>
+                                <div class="flex justify-end gap-2">
+                                    @if (item.Status != "Onaylandı")
+                                    {
+                                        <form method="post" asp-action="UpdateReservationStatus" asp-controller="AdminTour">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Onaylandı" />
+                                            <button type="submit"
+                                                    class="p-2 hover:bg-emerald-50 rounded-lg text-emerald-600 transition-colors"
+                                                    title="Onayla">
+                                                <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                                            </button>
+                                        </form>
+                                    }
+                                    @if (item.Status != "Beklemede")
+                                    {
+                                        <form method="post" asp-action="UpdateReservationStatus" asp-controller="AdminTour">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Beklemede" />
+                                            <button type="submit"
+                                                    class="p-2 hover:bg-amber-50 rounded-lg text-amber-600 transition-colors"
+                                                    title="Beklemede">
+                                                <span class="material-symbols-outlined text-[20px]">pending</span>
+                                            </button>
+                                        </form>
+                                    }
+                                    @if (item.Status != "İptal")
+                                    {
+                                        <form method="post" asp-action="UpdateReservationStatus" asp-controller="AdminTour"
+                                              onsubmit="return confirm('Rezervasyonu iptal etmek istediğinize emin misiniz?')">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="İptal" />
+                                            <button type="submit"
+                                                    class="p-2 hover:bg-red-50 rounded-lg text-red-600 transition-colors"
+                                                    title="İptal Et">
+                                                <span class="material-symbols-outlined text-[20px]">cancel</span>
+                                            </button>
+                                        </form>
+                                    }
                                 </div>
                             </td>
                         </tr>
-                        <!-- Row 2 -->
-                        <tr class="hover:bg-surface-container-low/50 transition-colors group">
-                            <td class="px-6 py-4 font-bold text-primary">#TRV-8943</td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
-                                        <img class="w-full h-full object-cover" data-alt="A professional close-up shot of an ancient Roman amphitheater in Ephesus under a clear blue sky. The stone textures are sharp and detailed. The lighting is bright mid-day sun, creating a majestic and historical atmosphere. Corporate travel brochure style with a clean, light-mode finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx-IDqM68DdB-czEYN87PJCm54xVNPRBzxjUN-PFrWrbY9YDBRawduYUMIDDIbYSXTN3jQmZFq53Mnjwly5nf8b0545F5l36ivTOOZES85eLDAJsNOPcrbgxTUtOcxX997wDSiCdy-Zln-U4vrqj73-wuDtaLgyNsmBibd9Nu6TdodRbAJZr4QXUjca0JBLgbRPYEQSXyl_pIQOvLHJxAUbwESagzFhlllNo_XHRdrBmKm2zjaoGktt6ubn0lp7eJYe_TagbG_xS4" />
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-on-surface">Elif Demir</p>
-                                        <p class="text-on-surface-variant text-label-sm">Efes Antik Kenti Gezisi</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 text-on-surface-variant text-body-md">15 Mar 2024</td>
-                            <td class="px-6 py-4 text-on-surface text-center font-semibold">4</td>
-                            <td class="px-6 py-4 font-bold text-on-surface">₺8.600</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-secondary-fixed text-on-secondary-fixed-variant">Beklemede</span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button class="p-2 hover:bg-primary-fixed rounded-lg text-primary transition-colors" title="Detaylar">
-                                        <span class="material-symbols-outlined text-[20px]">visibility</span>
-                                    </button>
-                                    <button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant transition-colors" title="Düzenle">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                                    </button>
-                                    <button class="p-2 hover:bg-error-container rounded-lg text-error transition-colors" title="İptal">
-                                        <span class="material-symbols-outlined text-[20px]">cancel</span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Row 3 -->
-                        <tr class="hover:bg-surface-container-low/50 transition-colors group">
-                            <td class="px-6 py-4 font-bold text-primary">#TRV-8944</td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
-                                        <img class="w-full h-full object-cover" data-alt="A luxury yacht sailing through the crystal clear turquoise waters of the Turkish Riviera in Antalya. The sun is shining brightly, creating sparkling reflections on the water. The mood is exclusive, serene, and premium, using a palette of blues, whites, and subtle golden accents. High-end lifestyle travel photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_-TThz7nd2H6hMU6w0nqfzopvc8mPqL8bFKxM1ma1UIKkjAX7NzJIQC9RQSK5CcCzBUKBVe9b1EKsYi9PlP_x3TLhJ7qayxs2W3MBdOHQHrsdeWb2iWKq83zQSVJX4KHApmzKkXb69Bk7eZ_KP0YZMPqThMCksbzli3wIC-x_UsfJmG14_w6FxkX9AdDzn0I6iU3NmFUQfJgs8fyy4WkKrjF22B-m2GxGUeaKvrUXxq4ZzyzYJbLkXvWJtNDoo3wJo84ZAUt7heM" />
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-on-surface">Mehmet Kaya</p>
-                                        <p class="text-on-surface-variant text-label-sm">Antalya Yat Turu</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 text-on-surface-variant text-body-md">18 Mar 2024</td>
-                            <td class="px-6 py-4 text-on-surface text-center font-semibold">1</td>
-                            <td class="px-6 py-4 font-bold text-on-surface">₺2.100</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-error-container text-error">İptal Edildi</span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button class="p-2 hover:bg-primary-fixed rounded-lg text-primary transition-colors" title="Detaylar">
-                                        <span class="material-symbols-outlined text-[20px]">visibility</span>
-                                    </button>
-                                    <button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant transition-colors" title="Düzenle">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                                    </button>
-                                    <button class="p-2 hover:bg-error-container rounded-lg text-error transition-colors" title="İptal">
-                                        <span class="material-symbols-outlined text-[20px]">cancel</span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- More rows... -->
-                    </tbody>
-                </table>
-            </div>
-            <!-- Pagination -->
-            <div class="p-6 border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-on-surface-variant text-body-md">1,240 kayıttan 1-10 arası gösteriliyor</p>
-                <div class="flex gap-2">
-                    <button class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all">
-                        <span class="material-symbols-outlined">chevron_left</span>
-                    </button>
-                    <button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold flex items-center justify-center shadow-md">1</button>
-                    <button class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all">2</button>
-                    <button class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all font-bold">...</button>
-                    <button class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all">124</button>
-                    <button class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all">
-                        <span class="material-symbols-outlined">chevron_right</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="p-6 border-t border-outline-variant/30 flex justify-between items-center">
+            <p class="text-on-surface-variant text-body-md">Toplam @Model.Count rezervasyon</p>
+        </div>
+    </section>
+</main>

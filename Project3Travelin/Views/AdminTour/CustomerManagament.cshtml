@@ -1,86 +1,29 @@
-﻿@{
+﻿@model List<AppUser>
+@{
     Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
+    var userStats = ViewBag.UserStats as IEnumerable<dynamic>;
 }
+
 <section class="p-container-padding flex-1 overflow-x-hidden">
-    <!-- Page Header -->
     <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
             <h2 class="font-display-lg text-display-lg text-on-surface">Müşteri Listesi</h2>
             <p class="text-on-surface-variant font-body-lg text-body-lg mt-1">Kayıtlı müşterilerin bilgilerini yönetin ve seyahat geçmişlerini inceleyin.</p>
         </div>
-        <div class="flex gap-3">
-            <button class="bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2.5 rounded-lg flex items-center gap-2 hover:bg-surface-container-low transition-colors shadow-sm">
-                <span class="material-symbols-outlined text-outline">download</span>
-                <span class="font-body-md text-body-md">CSV'ye Aktar</span>
-            </button>
-            <button class="bg-primary text-on-primary px-4 py-2.5 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all shadow-sm active:scale-95">
-                <span class="material-symbols-outlined">person_add</span>
-                <span class="font-body-md text-body-md">Yeni Müşteri Ekle</span>
-            </button>
-        </div>
     </div>
-    <!-- Statistics Cards - Bento Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
-        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex items-center gap-5 transition-transform hover:-translate-y-1">
+
+    <div class="grid grid-cols-1 gap-gutter mb-8">
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex items-center gap-5">
             <div class="w-14 h-14 bg-primary-container/10 rounded-full flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined" style="font-size: 32px;">group</span>
+                <span class="material-symbols-outlined" style="font-size:32px;">group</span>
             </div>
             <div>
                 <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Toplam Müşteri</p>
-                <h3 class="text-2xl font-bold text-on-surface">1,240</h3>
-                <p class="text-primary font-label-sm text-label-sm mt-1 flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">trending_up</span> +12% geçen aya göre
-                </p>
-            </div>
-        </div>
-        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex items-center gap-5 transition-transform hover:-translate-y-1">
-            <div class="w-14 h-14 bg-secondary-container/10 rounded-full flex items-center justify-center text-secondary">
-                <span class="material-symbols-outlined" style="font-size: 32px;">verified_user</span>
-            </div>
-            <div>
-                <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Aktif Müşteriler</p>
-                <h3 class="text-2xl font-bold text-on-surface">892</h3>
-                <p class="text-on-surface-variant font-label-sm text-label-sm mt-1">Şu an seyahatte olan: 24</p>
-            </div>
-        </div>
-        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex items-center gap-5 transition-transform hover:-translate-y-1">
-            <div class="w-14 h-14 bg-tertiary-container/10 rounded-full flex items-center justify-center text-tertiary">
-                <span class="material-symbols-outlined" style="font-size: 32px;">person_add</span>
-            </div>
-            <div>
-                <p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Bu Ay Yeni</p>
-                <h3 class="text-2xl font-bold text-on-surface">156</h3>
-                <p class="text-error font-label-sm text-label-sm mt-1 flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">trending_down</span> -2% geçen aya göre
-                </p>
+                <h3 class="text-2xl font-bold text-on-surface">@ViewBag.TotalCustomers</h3>
             </div>
         </div>
     </div>
-    <!-- Filters Area -->
-    <div class="bg-surface-container-low p-4 rounded-xl mb-6 flex flex-wrap items-center gap-4 border border-outline-variant">
-        <div class="flex-1 min-w-[240px] relative">
-            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
-            <input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none font-body-md text-body-md" placeholder="İsim veya e-posta ile ara..." type="text" />
-        </div>
-        <select class="min-w-[180px] bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 font-body-md text-body-md focus:ring-2 focus:ring-primary outline-none">
-            <option value="">Ülke Filtrele</option>
-            <option value="tr">Türkiye</option>
-            <option value="de">Almanya</option>
-            <option value="uk">İngiltere</option>
-            <option value="us">ABD</option>
-        </select>
-        <select class="min-w-[180px] bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 font-body-md text-body-md focus:ring-2 focus:ring-primary outline-none">
-            <option value="">Durum: Tümü</option>
-            <option value="active">Aktif</option>
-            <option value="passive">Pasif</option>
-            <option value="blocked">Engelli</option>
-        </select>
-        <button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors flex items-center gap-1">
-            <span class="material-symbols-outlined">filter_list</span>
-            <span class="font-label-sm text-label-sm">Gelişmiş Filtreler</span>
-        </button>
-    </div>
-    <!-- Data Table Card -->
+
     <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -88,157 +31,60 @@
                     <tr>
                         <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Müşteri</th>
                         <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">E-Posta</th>
-                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Telefon</th>
-                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Ülke</th>
                         <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-center">Toplam Tur</th>
                         <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Son Rezervasyon</th>
                         <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">İşlemler</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-surface-container-low">
-                    <!-- Row 1 -->
-                    <tr class="hover:bg-surface-container-lowest transition-colors group">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a young professional woman with a friendly expression. She has curly dark hair and is wearing a stylish blazer. The background is a brightly lit, modern office space with soft bokeh. The lighting is natural and highlights her features clearly. Modern, minimalist, and corporate professional style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDptbuwr4Hlsg9aC_rwG1bVJhaiFGYqDtPEFp0ai45fuONyj9BkrichibrLnw9amGM73C1VA--w25-_1g225JVAcYONt-KajclckVBR-FgU-tHy33Ot_wh4dg1Nw90Adl50GOkLg4o3pcWq6nt1NiZTF_q53M_Ppr8Z-61GhT7mFdk6OM6Hg2uqYLURUXJErqlW4nCG6g6cqJrAzCZtm0IqR9J9iKyB-19JpN6pTe8sDB9KUf_j3lYww3RLjaFVBiM_nnCBe_eRvn4" />
-                                <div>
-                                    <p class="font-bold text-on-surface font-body-md text-body-md">Selinnur Kaya</p>
-                                    <span class="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">VIP</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">selinnur@example.com</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+90 532 000 00 00</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Türkiye</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface text-center font-semibold">12</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">12 Haz 2024</td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-colors" title="Düzenle">
-                                    <span class="material-symbols-outlined">edit</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Geçmiş">
-                                    <span class="material-symbols-outlined">history</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-error transition-colors" title="Sil">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr class="hover:bg-surface-container-lowest transition-colors group">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <img class="w-10 h-10 rounded-full object-cover" data-alt="A high-quality portrait of an elderly man with silver hair and a kind, sophisticated look. He is wearing a tailored grey suit. The background is a blurred high-end hotel lobby with warm, luxury lighting. The aesthetic is premium, professional, and captures a sense of seasoned experience. Clean and bright light mode photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX5wEEdB_p8hYGLYc7tfH6yUyfWv9rAVX1AEqOxLSWwE1uogtvtMnQK8FuPU_aPGPYKjmC9Aw2DFmdEEkeWcrLiYLaltenp2Tz7JY-B2S76sdHezwKMeZlmc456cBIErl4muJNellsIIInY2U524Kt4Z6ypzpd-RHQZh0gzOAjTF9q7OqaAx_w82jo-vJTFKA_BGjX7MBfGjwr43W7b1csj3X2tC_PCFQgLwOtkPdHWXfnA2XK5VYyWaweS5Ydv5sX0TtGVkM32Ag" />
-                                <div>
-                                    <p class="font-bold text-on-surface font-body-md text-body-md">Hans Müller</p>
-                                    <span class="text-xs px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary font-semibold">Regular</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">hans.m@example.de</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+49 151 1234567</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Almanya</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface text-center font-semibold">5</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">02 May 2024</td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-colors">
-                                    <span class="material-symbols-outlined">edit</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors">
-                                    <span class="material-symbols-outlined">history</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-error transition-colors">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Row 3 -->
-                    <tr class="hover:bg-surface-container-lowest transition-colors group">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <img class="w-10 h-10 rounded-full object-cover" data-alt="Close up portrait of a young man with a casual, adventurous look. He has a beard and is wearing a high-quality outdoor jacket. The background is a softly blurred scenic mountain landscape under bright daylight. The style is travel-oriented, high-end, and vibrant, fitting a modern travel management dashboard theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy_plPwo0H8WLMgI9illxt-ThS2JFwMW2SWD0lQJTyNc7kkXiq3VTOR7oFnCZqkt8ALShmS8JDI6o6I5FBH236cMQJdwOkXMjZFLc6G4pjOgjJ52Q__ImTnPK0ZbO2klnfPCohq-Ahs0GxCCbXigjLxLaqENHnVWfzbyGOk7NrqBiqaGQVD6SCgNf_-s2_xrjfGW5mtSAIuI-VY-LfnMI-xMzFLOFHC4ig8djoLzAU7gmaN-_p7FW2t3_2pXUDkjd63UTt28Xti3M" />
-                                <div>
-                                    <p class="font-bold text-on-surface font-body-md text-body-md">James Wilson</p>
-                                    <span class="text-xs px-2 py-0.5 rounded-full bg-secondary-container/10 text-secondary font-semibold">New</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">j.wilson@mail.co.uk</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+44 7700 900000</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">İngiltere</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface text-center font-semibold">1</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">24 Nis 2024</td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-colors">
-                                    <span class="material-symbols-outlined">edit</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors">
-                                    <span class="material-symbols-outlined">history</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-error transition-colors">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Row 4 -->
-                    <tr class="hover:bg-surface-container-lowest transition-colors group">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a cheerful, middle-aged woman with glasses and a professional demeanor. She is in a creative office environment with warm lighting and plants in the background. She is wearing a modern professional outfit. The image has high clarity, soft shadows, and a contemporary light-mode aesthetic, suitable for an admin interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEERv4PHIV9MemGyc2K1AT3idQRH32AlbX6Di3aleIuhVfk-RHQXH3glNxz6d9latCTsaml9M_OQ97ua4O7R3KZa8E6yABDoNVRiWw17esG1i3MyAAKjcTDYejrK-6ZSe1n8y1AKqIcHphxfwtb0qpNdwQ9p__txvVDPDOtTtkaUNoPyy6TKA2ZbzbNkyzNSkp1DKqs30fMAnkchm2sjEAfejaPQZlp7vHge9YUQlCEZIIgFe6hPJpmJflpr-9lxhoJPjsCMMHohQ" />
-                                <div>
-                                    <p class="font-bold text-on-surface font-body-md text-body-md">Zeynep Yılmaz</p>
-                                    <span class="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">VIP</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">zeynep.y@turizm.com</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+90 541 234 56 78</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Türkiye</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface text-center font-semibold">8</td>
-                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">10 Haz 2024</td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-colors">
-                                    <span class="material-symbols-outlined">edit</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors">
-                                    <span class="material-symbols-outlined">history</span>
-                                </button>
-                                <button class="p-2 hover:bg-surface-container rounded-lg text-error transition-colors">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    @if (userStats != null)
+                    {
+                        @foreach (var stat in userStats)
+                        {
+                            AppUser user = stat.User;
+                            int tourCount = stat.TourCount;
+                            DateTime? lastRes = stat.LastReservation;
+
+                            <tr class="hover:bg-surface-container-lowest transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary text-sm flex-shrink-0">
+                                            @(user.FirstName?[0].ToString().ToUpper())@(user.LastName?[0].ToString().ToUpper())
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-on-surface font-body-md">@user.FirstName @user.LastName</p>
+                                            <span class="text-xs px-2 py-0.5 rounded-full @(tourCount >= 5 ? "bg-primary/10 text-primary" : tourCount == 0 ? "bg-secondary-container/10 text-secondary" : "bg-tertiary-container/10 text-tertiary") font-semibold">
+                                                @(tourCount >= 5 ? "VIP" : tourCount == 0 ? "Yeni" : "Regular")
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">@user.Email</td>
+                                <td class="px-6 py-4 font-body-md text-body-md text-on-surface text-center font-semibold">@tourCount</td>
+                                <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">
+                                    @(lastRes.HasValue ? lastRes.Value.ToString("dd MMM yyyy") : "—")
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <form method="post" asp-action="DeleteCustomer" asp-controller="AdminTour"
+                                              onsubmit="return confirm('Bu müşteriyi silmek istediğinize emin misiniz?')">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@user.Id" />
+                                            <button type="submit" class="p-2 hover:bg-surface-container rounded-lg text-error transition-colors" title="Sil">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
         </div>
-        <!-- Pagination Area -->
+
         <div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
-            <p class="text-on-surface-variant font-label-sm text-label-sm">1-10 / 1,240 kayıt gösteriliyor</p>
-            <div class="flex items-center gap-2">
-                <button class="p-2 border border-outline-variant rounded-lg bg-surface-container-lowest hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
-                    <span class="material-symbols-outlined">chevron_left</span>
-                </button>
-                <button class="w-10 h-10 bg-primary text-on-primary rounded-lg font-bold">1</button>
-                <button class="w-10 h-10 border border-outline-variant bg-surface-container-lowest text-on-surface rounded-lg hover:bg-surface-container transition-colors">2</button>
-                <button class="w-10 h-10 border border-outline-variant bg-surface-container-lowest text-on-surface rounded-lg hover:bg-surface-container transition-colors">3</button>
-                <span class="px-2 text-on-surface-variant">...</span>
-                <button class="w-10 h-10 border border-outline-variant bg-surface-container-lowest text-on-surface rounded-lg hover:bg-surface-container transition-colors">124</button>
-                <button class="p-2 border border-outline-variant rounded-lg bg-surface-container-lowest hover:bg-surface-container transition-colors">
-                    <span class="material-symbols-outlined">chevron_right</span>
-                </button>
-            </div>
+            <p class="text-on-surface-variant font-label-sm text-label-sm">Toplam @ViewBag.TotalCustomers müşteri</p>
         </div>
     </div>
 </section>
-
-</main>
-
-  

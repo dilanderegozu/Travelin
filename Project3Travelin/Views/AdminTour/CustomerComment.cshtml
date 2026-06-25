@@ -1,282 +1,135 @@
-﻿@{
+﻿@model List<Project3Travelin.Dtos.CommentDtos.ResultCommentDto>
+@{
     Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
 }
 
-        <div class="p-container-padding space-y-gutter">
-            <!-- Header Section -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <h2 class="font-display-lg text-display-lg text-primary">Müşteri Yorumları</h2>
-                    <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Turlara gelen geri bildirimleri yönetin, puanları takip edin ve yanıtlayın.</p>
-                </div>
-                <div class="flex gap-3">
-                    <button class="px-6 py-2 bg-secondary text-on-secondary rounded-lg font-semibold flex items-center gap-2 hover:bg-opacity-90 transition-all shadow-md">
-                        <span class="material-symbols-outlined">download</span>
-                        Rapor İndir
-                    </button>
-                </div>
+<div class="p-container-padding space-y-gutter">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+            <h2 class="font-display-lg text-display-lg text-primary">Müşteri Yorumları</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Turlara gelen geri bildirimleri yönetin ve onaylayın.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
+            <div class="p-2 bg-primary-fixed rounded-lg w-fit">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">star</span>
             </div>
-            <!-- Statistics Grid (Bento Style) -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant flex flex-col justify-between hover:shadow-lg transition-all cursor-default">
-                    <div class="flex justify-between items-start">
-                        <div class="p-2 bg-primary-fixed rounded-lg">
-                            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
-                        </div>
-                        <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+0.2 Bu ay</span>
-                    </div>
-                    <div class="mt-4">
-                        <p class="text-on-surface-variant text-label-sm font-label-sm uppercase tracking-wider">Ortalama Puan</p>
-                        <h3 class="text-3xl font-bold text-primary mt-1">4.8 / 5.0</h3>
-                    </div>
-                </div>
-                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant flex flex-col justify-between hover:shadow-lg transition-all cursor-default">
-                    <div class="flex justify-between items-start">
-                        <div class="p-2 bg-secondary-fixed rounded-lg">
-                            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">reviews</span>
-                        </div>
-                        <span class="text-xs font-bold text-primary bg-primary-fixed px-2 py-1 rounded-full">+124 Yeni</span>
-                    </div>
-                    <div class="mt-4">
-                        <p class="text-on-surface-variant text-label-sm font-label-sm uppercase tracking-wider">Toplam Yorum</p>
-                        <h3 class="text-3xl font-bold text-primary mt-1">1,240</h3>
-                    </div>
-                </div>
-                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant flex flex-col justify-between hover:shadow-lg transition-all cursor-default">
-                    <div class="flex justify-between items-start">
-                        <div class="p-2 bg-error-container rounded-lg">
-                            <span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <p class="text-on-surface-variant text-label-sm font-label-sm uppercase tracking-wider">Onay Bekleyen</p>
-                        <h3 class="text-3xl font-bold text-error mt-1">28</h3>
-                    </div>
-                </div>
-                <div class="bg-primary p-6 rounded-xl shadow-lg border border-primary flex flex-col justify-between text-white relative overflow-hidden group">
-                    <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-9xl">campaign</span>
-                    </div>
-                    <div>
-                        <p class="text-primary-fixed text-label-sm font-label-sm uppercase tracking-wider">Yanıtlanma Oranı</p>
-                        <h3 class="text-3xl font-bold mt-1">94%</h3>
-                    </div>
-                    <div class="mt-4 h-2 w-full bg-white/20 rounded-full overflow-hidden">
-                        <div class="h-full bg-white w-[94%]"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- Reviews Management Section -->
-            <div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant overflow-hidden">
-                <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/50">
-                    <h3 class="font-headline-md text-headline-md text-primary">Son Yorumlar</h3>
-                    <div class="flex gap-2">
-                        <select class="bg-surface border border-outline-variant rounded-lg text-sm px-3 py-2 outline-none focus:ring-2 focus:ring-primary">
-                            <option>Tüm Durumlar</option>
-                            <option>Yayınlandı</option>
-                            <option>Onay Bekliyor</option>
-                        </select>
-                        <select class="bg-surface border border-outline-variant rounded-lg text-sm px-3 py-2 outline-none focus:ring-2 focus:ring-primary">
-                            <option>En Yeni</option>
-                            <option>En Yüksek Puan</option>
-                            <option>En Düşük Puan</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-surface-container-high">
-                            <tr>
-                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">MÜŞTERİ</th>
-                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">TUR BİLGİSİ</th>
-                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">PUAN</th>
-                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">YORUM</th>
-                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">DURUM</th>
-                                <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant text-right">İŞLEMLER</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-surface-container-high">
-                            <!-- Row 1 -->
-                            <tr class="hover:bg-surface-container-low transition-colors group">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">AH</div>
-                                        <div>
-                                            <div class="font-bold">Ahmet Hamdi</div>
-                                            <div class="text-xs text-on-surface-variant">ahmet.h@email.com</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img class="w-full h-full object-cover" data-alt="A breathtaking view of Cappadocia's fairy chimneys at sunrise with colorful hot air balloons floating in a clear turquoise sky. High resolution, professional travel photography style, warm morning lighting, vibrant yet natural colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBx3EFpeslnf5SYAFxAMghhynipgjdJv328gbeTouUVgf_3zbM3TOdulCPhyd6t1hLgoekClr1AwJ-NGWoJ_1ZDCCjPxIKK1v_l65rEsIpvMecsvxJV52pv5_d4HjZcZa6TmcDds4bshKwRSPIFvOsIYHf33PKAEqXYQv4eYtaglyxLolEczr4qrG9DdH8U8HV5kkXjAegWqLTVkdB-fuazr4HJo-38_wj_18gGCINLNlZmWz5JcN60lTJ7n3pZDJ_loGz-M6tvnM" />
-                                        </div>
-                                        <div class="font-semibold text-sm">Kapadokya Balon Turu</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex text-secondary">
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                    </div>
-                                    <div class="text-[11px] text-on-surface-variant mt-0.5">12 May 2024</div>
-                                </td>
-                                <td class="px-6 py-4 max-w-[300px]">
-                                    <p class="text-sm line-clamp-2 italic">"Hayatımda gördüğüm en güzel manzaraydı. Organizasyon kusursuz, rehberimiz çok bilgiliydi. Kesinlikle tavsiye ederim!"</p>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-green-100 text-green-800 text-[11px] font-bold px-2 py-1 rounded-full">YAYINLANDI</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <div class="flex justify-end gap-2">
-                                        <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant" title="Yanıtla">
-                                            <span class="material-symbols-outlined text-sm">reply</span>
-                                        </button>
-                                        <button class="p-2 hover:bg-surface-container-high rounded-full text-error" title="Sil">
-                                            <span class="material-symbols-outlined text-sm">delete</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- Row 2 -->
-                            <tr class="hover:bg-surface-container-low transition-colors group">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-secondary">SY</div>
-                                        <div>
-                                            <div class="font-bold">Selma Yılmaz</div>
-                                            <div class="text-xs text-on-surface-variant">selma.y@email.com</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img class="w-full h-full object-cover" data-alt="A serene landscape of an Aegean seaside village at dusk with whitewashed houses and bright pink bougainvillea. Professional tourism photography, peaceful evening mood, soft blue and golden hour lighting, clean minimalist composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4Z4aPxOuu1ulOFP991lsXHyJjLAmODKUIFMmU0QgeWRYZOmb_PeDehQU9CbenI03pFVtwYFSM5s7M_oqRRBpbZpEs2MhTt-SSpzyupeV4sFF3mTMlRsSj_uLoDcUGemzE38NjMV5KBt1PZS96tS-2DKX8tI2cQ6pjYQFmNv_BdRNcSUqswF8XGHuGRHScn0mRcBJ9Ks5K6UYYEabNlKW3kOxo-ZW0-YtPN0u0sSF18ElLk2EO8xQL1El608ML_a-4wVm2XnvGGs8" />
-                                        </div>
-                                        <div class="font-semibold text-sm">Ege Sahil Kasabaları</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex text-secondary">
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">star</span>
-                                    </div>
-                                    <div class="text-[11px] text-on-surface-variant mt-0.5">14 May 2024</div>
-                                </td>
-                                <td class="px-6 py-4 max-w-[300px]">
-                                    <p class="text-sm line-clamp-2 italic">"Genel olarak güzeldi ancak transfer aracı biraz geç geldi. Onun dışında her şeyden çok memnun kaldık."</p>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-error-container text-error text-[11px] font-bold px-2 py-1 rounded-full">ONAY BEKLİYOR</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <div class="flex justify-end gap-2">
-                                        <button class="bg-primary text-white text-xs px-3 py-1.5 rounded-lg hover:bg-opacity-90 font-semibold transition-all">Onayla</button>
-                                        <button class="border border-outline text-xs px-3 py-1.5 rounded-lg hover:bg-surface-container-high transition-all">Reddet</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- Row 3 -->
-                            <tr class="hover:bg-surface-container-low transition-colors group">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-full bg-tertiary-fixed flex items-center justify-center font-bold text-tertiary">MC</div>
-                                        <div>
-                                            <div class="font-bold">Mert Can</div>
-                                            <div class="text-xs text-on-surface-variant">mert.c@email.com</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img class="w-full h-full object-cover" data-alt="A historic street in Istanbul's Sultanahmet district with the Hagia Sophia in the background. Professional architecture and travel photography, bright daylight, realistic shadows, vibrant street life, high-end travel guide aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzy0eGRPreZZkj80eZoiK7ti2pdzZzcu2MKyh4VlG-ptp39FA4hRIegysMjEKQIpb2knf0yAbgCSlPwvsiq9P0l2hLi0rfEpS45uyFyIC6xwWyRDiczAeSTzdvMUZJGQIrJnCqgA7nkYSDxKXCeeitDYk36GMdD1PeJINGqqTMPY93A0xUMRUu1gpqLWTTiCjqdl7hTIns7nbGFaYK6sCAZfOnJiwky_OPLGE192fsZJrT3dIWpl9yPLKnRBLDMCkr094yynjX7b0" />
-                                        </div>
-                                        <div class="font-semibold text-sm">İstanbul Tarih Turu</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex text-secondary">
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                                    </div>
-                                    <div class="text-[11px] text-on-surface-variant mt-0.5">15 May 2024</div>
-                                </td>
-                                <td class="px-6 py-4 max-w-[300px]">
-                                    <p class="text-sm line-clamp-2 italic">"Harika bir deneyimdi. İstanbul'u hiç böyle görmemiştim. Herkese tavsiye ederim."</p>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-green-100 text-green-800 text-[11px] font-bold px-2 py-1 rounded-full">YAYINLANDI</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <div class="flex justify-end gap-2">
-                                        <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant" title="Yanıtla">
-                                            <span class="material-symbols-outlined text-sm">reply</span>
-                                        </button>
-                                        <button class="p-2 hover:bg-surface-container-high rounded-full text-error" title="Sil">
-                                            <span class="material-symbols-outlined text-sm">delete</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="p-6 border-t border-outline-variant flex justify-between items-center bg-surface-container-low/30">
-                    <span class="text-sm text-on-surface-variant">1,240 yorumdan 1-10 arası gösteriliyor</span>
-                    <div class="flex gap-2">
-                        <button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
-                        <button class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded font-bold text-sm">1</button>
-                        <button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-sm">2</button>
-                        <button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-sm">3</button>
-                        <button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
-                    </div>
-                </div>
+            <div class="mt-4">
+                <p class="text-on-surface-variant text-label-sm font-label-sm uppercase tracking-wider">Ortalama Puan</p>
+                <h3 class="text-3xl font-bold text-primary mt-1">@ViewBag.AverageScore / 5.0</h3>
             </div>
         </div>
-      
-    </main>
-    <!-- Simple Detail Modal (Hidden by default) -->
-    <div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-[#091E42] bg-opacity-50" id="review-modal">
-        <div class="bg-surface rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-            <div class="p-6 border-b border-outline-variant flex justify-between items-center">
-                <h4 class="font-headline-md text-headline-md">Yorum Detayı</h4>
-                <button class="material-symbols-outlined hover:bg-surface-container rounded-full p-1" onclick="toggleModal()">close</button>
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
+            <div class="p-2 bg-secondary-fixed rounded-lg w-fit">
+                <span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">reviews</span>
             </div>
-            <div class="p-6 space-y-4">
-                <div class="flex gap-4">
-                    <div class="h-16 w-16 rounded-lg bg-surface-container-high flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-primary">person</span></div>
-                    <div>
-                        <h5 class="text-xl font-bold">Ahmet Hamdi</h5>
-                        <p class="text-on-surface-variant">Kapadokya Balon Turu • 12 Mayıs 2024</p>
-                        <div class="flex text-secondary mt-1">
-                            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 bg-surface-container-low rounded-lg italic text-body-lg">
-                    "Hayatımda gördüğüm en güzel manzaraydı. Organizasyon kusursuz, rehberimiz çok bilgiliydi. Kesinlikle tavsiye ederim! Kesinlikle tavsiye ederim! Balonların kalkışı tam zamanındaydı."
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-on-surface-variant mb-2">Yanıtınız</label>
-                    <textarea class="w-full bg-white border border-outline-variant rounded-lg p-3 outline-none focus:ring-2 focus:ring-primary transition-all" placeholder="Müşteriye yanıt yazın..." rows="4"></textarea>
-                </div>
+            <div class="mt-4">
+                <p class="text-on-surface-variant text-label-sm font-label-sm uppercase tracking-wider">Toplam Yorum</p>
+                <h3 class="text-3xl font-bold text-primary mt-1">@ViewBag.TotalComments</h3>
             </div>
-            <div class="p-6 bg-surface-container-low flex justify-end gap-3">
-                <button class="px-6 py-2 border border-outline text-on-surface-variant rounded-lg font-semibold hover:bg-surface-container-high transition-all" onclick="toggleModal()">İptal</button>
-                <button class="px-6 py-2 bg-primary text-on-primary rounded-lg font-semibold hover:bg-opacity-90 transition-all shadow-md">Yanıtı Gönder</button>
+        </div>
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
+            <div class="p-2 bg-error-container rounded-lg w-fit">
+                <span class="material-symbols-outlined text-error" style="font-variation-settings:'FILL' 1;">pending_actions</span>
+            </div>
+            <div class="mt-4">
+                <p class="text-on-surface-variant text-label-sm font-label-sm uppercase tracking-wider">Onay Bekleyen</p>
+                <h3 class="text-3xl font-bold text-error mt-1">@ViewBag.PendingComments</h3>
             </div>
         </div>
     </div>
 
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+        <div class="p-6 border-b border-outline-variant bg-surface-container-low/50">
+            <h3 class="font-headline-md text-headline-md text-primary">Tüm Yorumlar</h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-surface-container-high">
+                    <tr>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">MÜŞTERİ</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">YORUM</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">PUAN</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">TARİH</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant">DURUM</th>
+                        <th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant text-right">İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-surface-container-high">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="hover:bg-surface-container-low transition-colors group">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary text-sm">
+                                        @(item.NameSurname?.Length > 1 ? item.NameSurname.Substring(0, 2).ToUpper() : "??")
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-sm">@item.NameSurname</div>
+                                        <div class="text-xs text-on-surface-variant">@item.Email</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 max-w-[280px]">
+                                <p class="text-sm font-semibold text-on-surface mb-1">@item.HeadLine</p>
+                                <p class="text-sm text-on-surface-variant line-clamp-2 italic">"@item.CommentDetail"</p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex text-secondary">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <span class="material-symbols-outlined text-[16px]"
+                                              style="font-variation-settings:'FILL' @(i <= item.Score ? "1" : "0");">star</span>
+                                    }
+                                </div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">@item.Score / 5</div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-on-surface-variant">
+                                @item.CommentDate.ToString("dd MMM yyyy")
+                            </td>
+                            <td class="px-6 py-4">
+                                @if (item.IsStatus)
+                                {
+                                    <span class="bg-green-100 text-green-800 text-[11px] font-bold px-2 py-1 rounded-full">YAYINLANDI</span>
+                                }
+                                else
+                                {
+                                    <span class="bg-error-container text-error text-[11px] font-bold px-2 py-1 rounded-full">ONAY BEKLİYOR</span>
+                                }
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex justify-end gap-2">
+                                    @if (!item.IsStatus)
+                                    {
+                                        <form method="post" asp-action="ApproveComment" asp-controller="AdminTour">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.CommentId" />
+                                            <button type="submit"
+                                                    class="bg-primary text-white text-xs px-3 py-1.5 rounded-lg hover:opacity-90 font-semibold transition-all">
+                                                Onayla
+                                            </button>
+                                        </form>
+                                    }
+                                    <form method="post" asp-action="DeleteComment" asp-controller="AdminTour"
+                                          onsubmit="return confirm('Bu yorumu silmek istediğinize emin misiniz?')">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.CommentId" />
+                                        <button type="submit"
+                                                class="p-2 hover:bg-surface-container-high rounded-full text-error transition-colors">
+                                            <span class="material-symbols-outlined text-sm">delete</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="p-6 border-t border-outline-variant bg-surface-container-low/30 flex justify-between items-center">
+            <span class="text-sm text-on-surface-variant">Toplam @Model.Count yorum</span>
+        </div>
+    </div>
+</div>

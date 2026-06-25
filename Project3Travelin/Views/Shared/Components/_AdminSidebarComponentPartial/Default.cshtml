@@ -33,8 +33,7 @@
                    href="/AdminTour/TourList">Tur Listesi</a>
                 <a class="block text-body-md py-2 @(action == "CreateTour" ? "text-primary font-bold border-b-2 border-primary/20" : "text-on-surface-variant hover:text-primary")"
                    href="/AdminTour/CreateTour">Yeni Tur Ekle</a>
-                <a class="block text-body-md py-2 @(action == "TourCategory" ? "text-primary font-bold border-b-2 border-primary/20" : "text-on-surface-variant hover:text-primary")"
-                   href="/AdminTour/TourCategory">Tur Kategorileri</a>
+    
                 <a class="block text-body-md py-2 @(action == "TourDate" ? "text-primary font-bold border-b-2 border-primary/20" : "text-on-surface-variant hover:text-primary")"
                    href="/AdminTour/TourDate">Tur Takvimi</a>
             </div>
@@ -52,12 +51,7 @@
             <span class="font-body-md">Müşteri Yönetimi</span>
         </a>
 
-        <a class="flex items-center gap-3 px-4 py-3 transition-colors @(action == "Report" ? aktif : pasif)"
-           href="/AdminTour/Report">
-            <span class="material-symbols-outlined">payments</span>
-            <span class="font-body-md">Raporlar</span>
-        </a>
-
+     
         <a class="flex items-center gap-3 px-4 py-3 transition-colors @(action == "CustomerComment" ? aktif : pasif)"
            href="/AdminTour/CustomerComment">
             <span class="material-symbols-outlined">reviews</span>
@@ -72,7 +66,7 @@
 
     </nav>
     <div class="p-4 border-t border-outline-variant">
-        <button class="w-full flex items-center gap-3 text-error px-4 py-3 hover:bg-error-container/20 transition-colors rounded-lg">
+        <button asp-action="Logout" asp-controller="Account" class="w-full flex items-center gap-3 text-error px-4 py-3 hover:bg-error-container/20 transition-colors rounded-lg">
             <span class="material-symbols-outlined">logout</span>
             <span class="font-body-md">Çıkış Yap</span>
         </button>

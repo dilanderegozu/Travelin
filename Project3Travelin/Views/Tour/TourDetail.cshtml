@@ -1,4 +1,5 @@
 ﻿@model GetTourByIdDto
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> SignInManager
 @{
     Layout = "~/Views/Shared/_TravelinLayout.cshtml";
     int currentPage = ViewBag.CurrentPage ?? 1;
@@ -219,20 +220,40 @@
                             @foreach (var item in comments)
                             {
                                 <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="@item.ImageUrl" alt="@item.NameSurname">
+                                    <div class="comment-image" style="flex-shrink:0; width:50px; height:50px;">
+                                        @if (!string.IsNullOrEmpty(item.ImageUrl) && item.ImageUrl.StartsWith("http"))
+                                        {
+                                            <img src="@item.ImageUrl" alt="@item.NameSurname"
+                                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                            <div style="display:none; width:50px; height:50px; border-radius:50%; background:#1D9E75; color:#fff; font-weight:700; font-size:16px; align-items:center; justify-content:center;">
+                                                @(item.NameSurname?.Length > 0 ? item.NameSurname[0].ToString().ToUpper() : "?")
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="width:50px; height:50px; border-radius:50%; background:#1D9E75; color:#fff; font-weight:700; font-size:16px; display:flex; align-items:center; justify-content:center;">
+                                                @(item.NameSurname?.Length > 0 ? item.NameSurname[0].ToString().ToUpper() : "?")
+                                            </div>
+                                        }
                                     </div>
                                     <div class="comment-content rounded">
                                         <h5 class="mb-1">@item.NameSurname</h5>
-                                        <p class="comment-date">@item.CommentDate.ToString("dd.MM.yyyy HH:mm")</p>
+                                        <p class="comment-date" style="position:static !important; right:auto !important; top:auto !important;">
+                                            @item.CommentDate.ToString("dd.MM.yyyy HH:mm")
+                                        </p>
                                         <div class="comment-rate">
                                             <div class="rating mar-right-15">
                                                 @for (int i = 1; i <= 5; i++)
                                                 {
                                                     if (i <= item.Score)
-                                                    { <span class="fa fa-star checked"></span> }
+                                                    {
+                                                        <span class="fa fa-star checked"></span>
+                                                    }
                                                     else
-                                                    { <span class="fa fa-star"></span> }
+                                                    {
+
+                                                        <span class="fa fa-star"></span>
+                                                    }
                                                 }
                                             </div>
                                             <span class="comment-title">@item.HeadLine</span>
@@ -252,46 +273,60 @@
 
                     <div id="single-add-review" class="single-add-review">
                         <h4>Yorum Yap</h4>
-                        <form method="post" asp-controller="Comment" asp-action="CreateComment">
-                            <input type="hidden" name="TourId" value="@Model.TourId" />
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-2">
-                                        <input type="text" name="NameSurname" class="form-control" placeholder="Ad Soyad" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-2">
-                                        <input type="email" name="Email" class="form-control" placeholder="E-Posta" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-2">
-                                        <input type="text" name="HeadLine" class="form-control" placeholder="Yorum Başlığı" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-2">
-                                        <select name="Score" class="form-control" required>
-                                            <option value="">Puan Veriniz</option>
-                                            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-                                            <option value="4">⭐⭐⭐⭐ (4)</option>
-                                            <option value="3">⭐⭐⭐ (3)</option>
-                                            <option value="2">⭐⭐ (2)</option>
-                                            <option value="1">⭐ (1)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group mb-2">
-                                        <textarea name="CommentDetail" class="form-control" rows="5" placeholder="Yorumunuzu yazınız..." required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="nir-btn">Yorumu Gönder</button>
-                                </div>
-                            </div>
-                        </form>
+                      
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form method="post" asp-controller="Comment" asp-action="CreateComment">
+            <input type="hidden" name="TourId" value="@Model.TourId" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <input type="text" name="NameSurname" class="form-control" placeholder="Ad Soyad" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <input type="email" name="Email" class="form-control" placeholder="E-Posta" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <input type="text" name="HeadLine" class="form-control" placeholder="Yorum Başlığı" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <select name="Score" class="form-control" required>
+                            <option value="">Puan Veriniz</option>
+                            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                            <option value="4">⭐⭐⭐⭐ (4)</option>
+                            <option value="3">⭐⭐⭐ (3)</option>
+                            <option value="2">⭐⭐ (2)</option>
+                            <option value="1">⭐ (1)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group mb-2">
+                        <textarea name="CommentDetail" class="form-control" rows="5" placeholder="Yorumunuzu yazınız..." required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="nir-btn">Yorumu Gönder</button>
+                </div>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning d-flex align-items-center gap-2 rounded" style="font-size:14px;">
+            <i class="fas fa-lock me-2"></i>
+            Yorum yapabilmek için
+            <a asp-controller="Account" asp-action="Login" style="color:#1D9E75; font-weight:500; margin-left:4px;">giriş yapmanız</a>
+            &nbsp;gerekmektedir.
+        </div>
+    }
                     </div>
 
                 </div>

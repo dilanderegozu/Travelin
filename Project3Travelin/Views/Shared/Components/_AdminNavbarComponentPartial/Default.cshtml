@@ -1,4 +1,4 @@
-﻿
+﻿@model AppUser
 <header class="flex justify-between items-center h-[header-height] px-container-padding bg-white shadow-sm sticky top-0 z-30">
     <div class="flex items-center gap-6 w-1/2">
         <div class="relative w-full max-w-md">
@@ -20,10 +20,10 @@
         <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
         <div class="flex items-center gap-3 cursor-pointer group">
             <div class="text-right hidden md:block">
-                <p class="font-body-md font-bold text-on-surface">Admin Soyad</p>
-                <p class="text-label-sm text-on-surface-variant">Süper Admin</p>
+                <p class="font-body-md font-bold text-on-surface">@Model.FirstName @Model.LastName</p>
+                
             </div>
-            <img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover group-hover:ring-4 ring-primary/10 transition-all" data-alt="A professional headshot of a travel agency administrator, middle-aged male with a friendly and authoritative expression, wearing business casual attire. The background is a blurred high-end corporate office with soft, warm lighting. The image style is polished, sharp, and consistent with a premium enterprise software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr_PhvFlTtgDHrVe_NKofjBqmfSg71RtP1PtCIyaxby55iY5Po9Ajaosrp22B5XU77PI-Q_QCF2H_cF6PE9WyGhcOZUxrLW6bWgqghX79CpIA4s8bx6Pwmzax-t4e6rqchlwQKHQHTC2mydZ-sHWDJLZ_PSCMDzSKDzW6wlQ5c9S8zOnCFQYGRkk0ST2mgKVy44sVytI585NOgKB4q-2TAyaCWyY9U9oe5l3CgFjihGe0A4Cgmbc9OyL75y3rj71m1umvgc5lrTJI" />
+            <img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover group-hover:ring-4 ring-primary/10 transition-all" data-alt="A professional headshot of a travel agency administrator, middle-aged male with a friendly and authoritative expression, wearing business casual attire. The background is a blurred high-end corporate office with soft, warm lighting. The image style is polished, sharp, and consistent with a premium enterprise software interface." src="@Model.ImageUrl" />
         </div>
     </div>
 </header>

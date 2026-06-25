@@ -1,31 +1,36 @@
-﻿@{
+﻿@model Project3Travelin.Dtos.TourDtos.CreateTourDto
+@{
     Layout = "~/Views/Shared/_AdminTourLayout.cshtml";
 }
+
+<form method="post" asp-action="CreateTour" asp-controller="AdminTour" id="create-form">
+    @Html.AntiForgeryToken()
     <main class="ml-[sidebar-width] pt-[header-height] min-h-screen p-container-padding pb-32">
-        <!-- BREADCRUMBS -->
+
         <nav class="flex items-center gap-2 text-on-surface-variant font-label-sm mb-4">
-            <span>Ana Sayfa</span>
+            <a href="/AdminTour/Index" class="hover:text-primary">Ana Sayfa</a>
             <span class="material-symbols-outlined text-sm">chevron_right</span>
-            <span>Tur Yönetimi</span>
+            <a href="/AdminTour/TourList" class="hover:text-primary">Tur Yönetimi</a>
             <span class="material-symbols-outlined text-sm">chevron_right</span>
             <span class="text-primary font-bold">Yeni Tur Ekle</span>
         </nav>
+
         <div class="flex justify-between items-end mb-8">
             <div>
                 <h3 class="font-display-lg text-display-lg text-on-surface">Yeni Tur Ekle</h3>
                 <p class="text-on-surface-variant mt-1 font-body-md">Sisteme yeni bir gezi rotası ve detaylarını ekleyin.</p>
             </div>
             <div class="flex gap-3">
-                <button class="px-6 py-2.5 rounded-lg border border-primary text-primary font-bold btn-hover hover:bg-surface-container-low">İptal</button>
-                <button class="px-8 py-2.5 rounded-lg bg-primary text-white font-bold btn-hover hover:bg-primary-container shadow-md">Kaydet</button>
+                <a href="/AdminTour/TourList" class="px-6 py-2.5 rounded-lg border border-primary text-primary font-bold hover:bg-surface-container-low">İptal</a>
+                <button type="submit" class="px-8 py-2.5 rounded-lg bg-primary text-white font-bold hover:bg-primary-container shadow-md">Kaydet</button>
             </div>
         </div>
-        <!-- FORM GRID -->
+
         <div class="grid grid-cols-12 gap-6">
-            <!-- Left Column: Primary Data -->
             <div class="col-span-12 lg:col-span-8 space-y-6">
-                <!-- Section 1: Temel Bilgiler -->
-                <div class="bg-surface-container-lowest p-6 rounded-lg card-shadow border border-outline-variant/30">
+
+                <!-- Temel Bilgiler -->
+                <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/30">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined text-[20px]">info</span>
@@ -35,44 +40,80 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-label-sm font-bold text-on-surface mb-1.5">Tur Başlığı</label>
-                            <input class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Örn: Kapadokya Rüya Turu" type="text" />
+                            <input asp-for="Title" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-label-sm font-bold text-on-surface mb-1.5">Ülke</label>
-                                <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none">
-                                    <option>Türkiye</option>
-                                    <option>İtalya</option>
-                                    <option>Fransa</option>
-                                    <option>Yunanistan</option>
-                                </select>
+                                <input asp-for="Country" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                             </div>
                             <div>
                                 <label class="block text-label-sm font-bold text-on-surface mb-1.5">Şehir</label>
-                                <input class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Şehir giriniz" type="text" />
+                                <input asp-for="City" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-label-sm font-bold text-on-surface mb-1.5">Tur Tarihi</label>
-                                <div class="relative">
-                                    <input class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="date" />
-                                </div>
+                                <input asp-for="TourDate" type="date" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                             </div>
                             <div>
                                 <label class="block text-label-sm font-bold text-on-surface mb-1.5">Gün / Gece</label>
-                                <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none">
-                                    <option>3 Gün / 2 Gece</option>
-                                    <option>4 Gün / 3 Gece</option>
-                                    <option>7 Gün / 6 Gece</option>
-                                    <option>10 Gün / 9 Gece</option>
-                                </select>
+                                <input asp-for="DayNight" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Kalkış Noktası</label>
+                                <input asp-for="DepartureLocation" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Dönüş Noktası</label>
+                                <input asp-for="ReturnLocation" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Alış Noktası</label>
+                                <input asp-for="PickupLocation" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Kalkış Saati</label>
+                                <input asp-for="DepartureTime" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Minimum Yaş</label>
+                                <input asp-for="MinAge" type="number" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Oda Sayısı</label>
+                                <input asp-for="BedroomCount" type="number" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Enlem</label>
+                                <input asp-for="Latitude" type="number" step="any" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Boylam</label>
+                                <input asp-for="Longitude" type="number" step="any" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </div>
+                            <div>
+                                <label class="block text-label-sm font-bold text-on-surface mb-1.5">Durum</label>
+                                <div class="flex items-center gap-3 p-3 bg-surface-container-low border border-outline-variant rounded-lg">
+                                    <input asp-for="IsStatus" type="checkbox" class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" id="isStatus" />
+                                    <label for="isStatus" class="text-body-md cursor-pointer">Aktif</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Section 3: Tur Detayları -->
-                <div class="bg-surface-container-lowest p-6 rounded-lg card-shadow border border-outline-variant/30">
+
+                <!-- Açıklama -->
+                <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/30">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined text-[20px]">subject</span>
@@ -81,110 +122,100 @@
                     </div>
                     <div>
                         <label class="block text-label-sm font-bold text-on-surface mb-1.5">Açıklama</label>
-                        <textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Tur programı, gezilecek yerler ve genel bilgiler..." rows="6"></textarea>
+                        <textarea asp-for="Description" rows="6" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"></textarea>
                     </div>
                 </div>
+
             </div>
-            <!-- Right Column: Metadata & Assets -->
+
+            <!-- Sağ Kolon -->
             <div class="col-span-12 lg:col-span-4 space-y-6">
-                <!-- Section 2: Kapasite ve Fiyatlandırma -->
-                <div class="bg-surface-container-lowest p-6 rounded-lg card-shadow border border-outline-variant/30">
+
+                <!-- Kapasite & Fiyat -->
+                <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/30">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-8 h-8 rounded-full bg-secondary-container/10 flex items-center justify-center text-secondary-container">
-                            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">payments</span>
+                            <span class="material-symbols-outlined text-[20px]">payments</span>
                         </div>
-                        <h4 class="font-headline-md text-headline-md">Kapasite &amp; Fiyat</h4>
+                        <h4 class="font-headline-md text-headline-md">Kapasite & Fiyat</h4>
                     </div>
                     <div class="space-y-4">
                         <div>
                             <label class="block text-label-sm font-bold text-on-surface mb-1.5">Toplam Kapasite</label>
-                            <div class="flex items-center">
-                                <input class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="number" value="20" />
-                                <span class="ml-3 text-on-surface-variant font-label-sm">Kişi</span>
+                            <div class="flex items-center gap-3">
+                                <input asp-for="Capacity" type="number" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                                <span class="text-on-surface-variant font-label-sm whitespace-nowrap">Kişi</span>
                             </div>
                         </div>
                         <div>
                             <label class="block text-label-sm font-bold text-on-surface mb-1.5">Fiyat</label>
                             <div class="relative">
                                 <span class="absolute left-3 top-3 text-on-surface-variant font-bold">₺</span>
-                                <input class="w-full pl-8 bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="0.00" type="text" />
-                                <select class="absolute right-2 top-2 border-none bg-surface-container rounded-md text-label-sm py-1 focus:ring-0">
-                                    <option>TRY</option>
-                                    <option>USD</option>
-                                    <option>EUR</option>
-                                </select>
+                                <input asp-for="Price" type="number" step="0.01" class="w-full pl-8 bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                             </div>
+                        </div>
+                        <div>
+                            <label class="block text-label-sm font-bold text-on-surface mb-1.5">Para Birimi</label>
+                            <select asp-for="Currency" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                                <option value="TRY">TRY</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <!-- Section 4: Kategori ve Görsel -->
-                <div class="bg-surface-container-lowest p-6 rounded-lg card-shadow border border-outline-variant/30">
+
+                <!-- Sınıflandırma & Görsel -->
+                <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/30">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined text-[20px]">category</span>
                         </div>
                         <h4 class="font-headline-md text-headline-md">Sınıflandırma</h4>
                     </div>
-                    <div class="space-y-6">
+                    <div class="space-y-4">
                         <div>
-                            <label class="block text-label-sm font-bold text-on-surface mb-1.5">Tur Kategorisi</label>
-                            <select class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none">
-                                <option>Kültür Turu</option>
-                                <option>Doğa &amp; Macera</option>
-                                <option>Yaz Tatili</option>
-                                <option>Gurme Turları</option>
-                            </select>
+                            <label class="block text-label-sm font-bold text-on-surface mb-1.5">Kategori</label>
+                            <input asp-for="CategoryName" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                         </div>
                         <div>
-                            <label class="block text-label-sm font-bold text-on-surface mb-1.5">Tur Görseli</label>
-                            <div class="mt-2 border-2 border-dashed border-outline-variant rounded-lg p-8 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group" id="upload-area">
-                                <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-3 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                                    <span class="material-symbols-outlined">cloud_upload</span>
-                                </div>
-                                <p class="text-body-md font-bold text-on-surface">Görsel Yükle</p>
-                                <p class="text-[11px] text-on-surface-variant mt-1 text-center">PNG, JPG up to 10MB<br />(Önerilen: 1200x800px)</p>
-                            </div>
-                            <div class="mt-4 hidden" id="preview-area">
-                                <div class="relative group">
-                                    <img class="w-full h-40 object-cover rounded-lg shadow-sm border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqKCimL4RmSz88dEuxECyi63_hsFe1YM6BS13Vxbv0NOarSuMIitJ61CKGVpxh_c3QaRx3RLyzolkVoVqmwMcUSPydvCLG06H3sJJP1XJOi6juOJmns4WC_GG1js3mPh_5YsM50Knjf0MPT6fne2X339uxxer1HEPWWJhjBCln3Yug3LhUzDa09az4tRRyU7Vju6jqje7cZa3qZzIVs9vbfDSNvnFbJohGlG_fd1ron8Igx2JHnxTFtvXxC3prUWxo7IAb8lCdo7c" />
-                                    <button class="absolute top-2 right-2 w-8 h-8 bg-error text-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <span class="material-symbols-outlined text-sm">close</span>
-                                    </button>
-                                </div>
-                                <p class="text-[11px] text-on-surface-variant mt-2 italic">Görsel başarıyla seçildi: cappadocia_main.jpg</p>
-                            </div>
+                            <label class="block text-label-sm font-bold text-on-surface mb-1.5">Görsel URL</label>
+                            <input asp-for="ImageUrl" id="image-url-input" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                        </div>
+                        <div id="image-preview" class="hidden">
+                            <img id="preview-img" class="w-full h-40 object-cover rounded-lg border border-outline-variant" src="" />
                         </div>
                     </div>
                 </div>
-                <!-- Quick Help -->
+
+                <!-- İpucu -->
                 <div class="bg-primary/5 p-6 rounded-lg border border-primary/20">
                     <p class="font-bold text-primary flex items-center gap-2 mb-2">
                         <span class="material-symbols-outlined text-sm">lightbulb</span>
                         İpucu
                     </p>
                     <p class="text-body-md text-on-surface-variant leading-relaxed">
-                        Turlarınızı daha dikkat çekici kılmak için yüksek çözünürlüklü görseller ve detaylı tur programı açıklamaları eklemeyi unutmayın.
+                        Yüksek çözünürlüklü görseller ve detaylı tur programı açıklamaları ekleyerek turunuzu daha dikkat çekici hale getirin.
                     </p>
                 </div>
+
             </div>
         </div>
     </main>
-   
+</form>
 
+@section Scripts {
     <script>
-        const uploadArea = document.getElementById('upload-area');
-        const previewArea = document.getElementById('preview-area');
-
-        uploadArea.addEventListener('click', () => {
-        uploadArea.classList.add('hidden');
-        previewArea.classList.remove('hidden');
-        });
-
-        const searchInput = document.querySelector('input[type="text"]');
-        searchInput.addEventListener('focus', () => {
-        searchInput.parentElement.classList.add('ring-2', 'ring-primary/30');
-        });
-        searchInput.addEventListener('blur', () => {
-        searchInput.parentElement.classList.remove('ring-2', 'ring-primary/30');
+        document.getElementById('image-url-input').addEventListener('input', function () {
+            const url = this.value.trim();
+            const preview = document.getElementById('image-preview');
+            const img = document.getElementById('preview-img');
+            if (url) {
+                img.src = url;
+                preview.classList.remove('hidden');
+            } else {
+                preview.classList.add('hidden');
+            }
         });
     </script>
+}
