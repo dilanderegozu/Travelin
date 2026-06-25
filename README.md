@@ -222,15 +222,12 @@ This project was built for learning and portfolio purposes. Feel free to fork an
 
 ---
 
-## 📄 License
-
-MIT License — free to use for personal and commercial projects.
-
----
 
 <div align="center">
   Built with ❤️ using ASP.NET Core MVC & MongoDB
 </div>
+## 📸 | Customer Site
+
 
 <img width="1894" height="871" alt="Ekran görüntüsü 2026-06-25 231304" src="https://github.com/user-attachments/assets/2c39c7ad-5043-47f5-8582-e755e406ca07" />
 <img width="1907" height="866" alt="Ekran görüntüsü 2026-06-25 231317" src="https://github.com/user-attachments/assets/aa0ab554-e36c-4517-a733-22801be9ae23" />
@@ -261,8 +258,20 @@ MIT License — free to use for personal and commercial projects.
 <img width="1894" height="870" alt="Ekran görüntüsü 2026-06-25 233206" src="https://github.com/user-attachments/assets/70e58097-a025-4758-af36-649112334609" />
 
 
+## 📸 | Admin Dashboard
+<img width="1896" height="865" alt="Ekran görüntüsü 2026-06-25 230957" src="https://github.com/user-attachments/assets/bba2a678-baeb-4ff2-ba1e-a81f96584c7e" />
+<img width="1892" height="873" alt="Ekran görüntüsü 2026-06-25 231011" src="https://github.com/user-attachments/assets/3cc1ea7b-127d-4406-aa89-f3ac3513093f" />
+<img width="1891" height="863" alt="Ekran görüntüsü 2026-06-25 231023" src="https://github.com/user-attachments/assets/f0947432-3d1a-4eb2-9470-052d4c7b6fbc" />
+<img width="1909" height="873" alt="Ekran görüntüsü 2026-06-25 231030" src="https://github.com/user-attachments/assets/6654f24c-b31a-48af-84c0-53a15ee28c6d" />
 
 
 
 
 
+
+<img width="1914" height="873" alt="Ekran görüntüsü 2026-06-25 231039" src="https://github.com/user-attachments/assets/8f6a09b2-0386-4eea-9127-881a0c0ad978" />
+<img width="1909" height="866" alt="Ekran görüntüsü 2026-06-25 231047" src="https://github.com/user-attachments/assets/e488ea85-0d0c-40a3-a6a0-186dd7d2912a" />
+<img width="1888" height="864" alt="Ekran görüntüsü 2026-06-25 231205" src="https://github.com/user-attachments/assets/b8a68d31-0636-4920-bcd9-f2046f555f82" />
+
+<img width="1884" height="868" alt="Ekran görüntüsü 2026-06-25 231224" src="https://github.com/user-attachments/assets/8f98586f-e52e-44fa-88fd-329d1cca96de" />
+<img width="1912" height="872" alt="Ekran görüntüsü 2026-06-25 231236" src="https://github.com/user-attachments/assets/8bbd8b00-351a-490f-a3d4-76410a80ec00" />
