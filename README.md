@@ -1,12 +1,9 @@
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/2c39c7ad-5043-47f5-8582-e755e406ca07" width="100%" alt="Travelin Banner" />
-
 # 🌍 Travelin
-### Travel & Tour Booking Platform
+### Modern Tur & Rezervasyon Yönetim Platformu
 
-> A full-stack travel and tour booking web application built with **ASP.NET Core MVC**, **MongoDB**, and **Tailwind CSS**.  
-> Features a modern customer-facing site and a complete admin dashboard.
+> **Travelin**, gezginlerin hayallerindeki turları keşfetmesini, rezervasyon yapmasını ve tüm seyahat süreçlerini yönetmesini sağlayan; modern, güvenli ve dinamik bir ASP.NET Core MVC platformudur.
 
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat-square&logo=mongodb)](https://www.mongodb.com/)
@@ -18,7 +15,63 @@
 
 ---
 
-## 📸 Customer Site
+## 🚀 Öne Çıkan Özellikler
+
+### 🔐 Kimlik Doğrulama & Yetkilendirme
+- **ASP.NET Core Identity** ile role-based access control (Admin / User)
+- Kayıt olan her kullanıcıya otomatik **"User"** rolü atanır
+- Giriş sonrası role göre yönlendirme: Admin → Admin Panel, User → Dashboard
+- `[Authorize]` ve `[Authorize(Roles = "Admin")]` ile uç nokta koruması
+- Cookie tabanlı kimlik doğrulama ve password hashing
+
+ <img width="1876" height="863" alt="Ekran görüntüsü 2026-06-25 234120" src="https://github.com/user-attachments/assets/bb6eca24-ad64-4173-bce8-69a7e618be9c" />
+<img width="1877" height="870" alt="Ekran görüntüsü 2026-06-25 234135" src="https://github.com/user-attachments/assets/06f30a37-ae40-4c56-a1da-9a102d98d54e" />
+
+
+### 🧳 Müşteri Paneli
+- **Tur Listesi** — Pagination, sıralama ve çoklu filtreleme (şehir, kategori, süre)
+- **Tur Detayı** — Açıklama, program, harita, dahil/hariç hizmetler, yıldız değerlendirmesi
+- **Rezervasyon Motoru** — Kişi sayısına göre anlık fiyat hesaplama (JavaScript DOM)
+- **Rezervasyonlarım** — Aktif rezervasyonları görüntüleme ve iptal etme
+- **Yorum Sistemi** — Sadece giriş yapmış kullanıcılar yorum yapabilir; admin onayından sonra yayına girer
+
+### 🛠️ Admin Paneli
+- **Dashboard** — Anlık istatistikler: müşteri, rezervasyon, bekleyen, onaylanan
+- **Aylık Grafik** — Chart.js ile 6 ay / 1 yıl rezervasyon analizi
+- **Kategori Dağılımı** — Rezervasyon × Tur join'iyle hesaplanan kategori yüzdesi
+- **Tur Yönetimi** — Tam CRUD, aktif/pasif durum toggle
+- **Tur Takvimi** — Aylık takvim görünümü, ay navigasyonu, tur popup detayı
+- **Rezervasyon Yönetimi** — Onayla / Beklemede / İptal Et
+- **Müşteri Yönetimi** — Kullanıcı listesi, tur sayısı, son rezervasyon tarihi
+- **Yorum Moderasyonu** — Bekleyen/yayınlanan durum, onay ve silme
+- **Kategori Yönetimi** — CRUD + kategoriye ait tur sayısı
+- **Ayarlar** — Admin profili, şifre değiştirme, iletişim, sosyal medya
+
+### ✨ Teknik Özellikler
+- **Tüm veritabanı işlemleri** `async/await` ile asenkron
+- **AutoMapper** ile Entity ↔ DTO dönüşümleri
+- **ViewComponent** mimarisi ile modüler ve bağımsız UI bileşenleri
+- **MongoDB** ile esnek NoSQL veri yönetimi
+- **Service Layer** pattern ile temiz kod mimarisi
+- **Türkçe / İngilizce** dil desteği (`localStorage` tabanlı)
+
+---
+
+## 📸 Kimlik Doğrulama
+
+> 💡 **Login ve Register görsellerini buraya ekle:**
+> GitHub'da bu README'yi düzenlerken aşağıdaki satırların altına,
+> görselleri sürükle-bırak ile yükle veya Issues üzerinden upload et.
+
+<!-- LOGIN GÖRSELİNİ BURAYA EKLE -->
+<!-- <img src="BURAYA_LOGIN_GORSEL_URL" width="49%" /> -->
+
+<!-- REGISTER GÖRSELİNİ BURAYA EKLE -->
+<!-- <img src="BURAYA_REGISTER_GORSEL_URL" width="49%" /> -->
+
+---
+
+## 📸 Müşteri Sitesi
 
 <img src="https://github.com/user-attachments/assets/2c39c7ad-5043-47f5-8582-e755e406ca07" width="49%" /> <img src="https://github.com/user-attachments/assets/aa0ab554-e36c-4517-a733-22801be9ae23" width="49%" />
 <img src="https://github.com/user-attachments/assets/11763786-9f33-42e4-8e6e-b9a6bb0ffab9" width="49%" /> <img src="https://github.com/user-attachments/assets/2561bbc6-b8f7-4991-8cef-51986f0d994f" width="49%" />
@@ -43,70 +96,40 @@
 
 ---
 
-## 🚀 Features
+## 🏗️ Teknoloji Stack'i
 
-### 🧳 Customer Panel
-
-| Feature | Description |
-|---|---|
-| **Tour Listing** | Browse all active tours with pagination, sorting and filtering |
-| **Tour Detail** | Full tour info: description, itinerary, map, included/excluded services |
-| **Reservation System** | Book tours with personal info; real-time price calculation |
-| **My Reservations** | View and cancel personal reservations |
-| **Review System** | Authenticated users submit star-rated reviews; admin approval required |
-| **Authentication** | Register / Login with role-based redirection |
-| **Multi-language** | Turkish / English toggle via localStorage |
-
-### 🛠️ Admin Panel
-
-| Feature | Description |
-|---|---|
-| **Dashboard** | Live stats: customers, reservations, pending & approved bookings |
-| **Monthly Chart** | Bar chart for reservation analytics (6 months / 1 year toggle) |
-| **Category Distribution** | Breakdown of reservations by tour category |
-| **Tour Management** | Full CRUD: create, update, delete tours; active/passive toggle |
-| **Tour Calendar** | Monthly calendar view with tour detail popup |
-| **Reservation Management** | Approve, set pending, or cancel any reservation |
-| **Customer Management** | List users with tour count and last reservation date |
-| **Comment Moderation** | Approve or delete reviews; pending/published status |
-| **Category Management** | Add, edit, delete categories with tour count |
-| **Settings** | Admin profile, password change, contact info, social media |
-
----
-
-## 🏗️ Tech Stack
-
-| Layer | Technology |
+| Katman | Teknoloji |
 |---|---|
 | Backend | ASP.NET Core MVC (.NET 8) |
-| Database | MongoDB |
-| ORM / Mapping | MongoDB.Driver + AutoMapper |
-| Identity | ASP.NET Core Identity (MongoDbCore) |
-| Frontend (Customer) | Bootstrap 5, custom CSS, FontAwesome |
+| Veritabanı | MongoDB |
+| Mapping | MongoDB.Driver + AutoMapper |
+| Kimlik Doğrulama | ASP.NET Core Identity (MongoDbCore) |
+| Frontend (Müşteri) | Bootstrap 5, Custom CSS, FontAwesome |
 | Frontend (Admin) | Tailwind CSS, Material Symbols, Chart.js |
-| Architecture | Service Layer, ViewComponents, DTOs |
+| Mimari | Service Layer, ViewComponent, DTO Pattern |
+| Dil Desteği | Türkçe / İngilizce (localStorage) |
 
 ---
 
-## 📁 Project Structure
+## 📁 Proje Yapısı
 
 ```
 Project3Travelin/
 ├── Controllers/
 │   ├── AccountController.cs       # Login, Register, Logout
-│   ├── AdminTourController.cs     # All admin operations
-│   ├── CommentController.cs       # Comment creation
-│   ├── DashboardController.cs     # Customer home
-│   ├── ReservationController.cs   # Reservation CRUD
-│   └── TourController.cs          # Tour list, detail, destination
+│   ├── AdminTourController.cs     # Tüm admin işlemleri
+│   ├── CommentController.cs       # Yorum oluşturma
+│   ├── DashboardController.cs     # Müşteri ana sayfa
+│   ├── ReservationController.cs   # Rezervasyon CRUD
+│   └── TourController.cs          # Tur listesi, detay, rota
 ├── DTOs/
-│   ├── AccountDtos/
-│   ├── CategoryDtos/
-│   ├── CommentDtos/
-│   ├── ReservationDtos/
-│   └── TourDtos/
+│   ├── AccountDtos/               # LoginDto, RegisterDto, UpdateProfileDto
+│   ├── CategoryDtos/              # Result, Create, Update
+│   ├── CommentDtos/               # Result, Create, Update, GetById
+│   ├── ReservationDtos/           # Result, Create
+│   └── TourDtos/                  # Result, Create, Update, GetById
 ├── Entities/
-│   ├── AppUser.cs
+│   ├── AppUser.cs                 # Genişletilmiş Identity kullanıcısı
 │   ├── AppRole.cs
 │   ├── Tour.cs
 │   ├── Category.cs
@@ -118,31 +141,40 @@ Project3Travelin/
 │   ├── CommentServices/
 │   └── ReservationServices/
 ├── ViewComponents/
+│   ├── AdminNavbarViewComponent.cs
+│   ├── NavbarUserViewComponent.cs
+│   └── _AdminLastReservationComponentPartial.cs
 ├── Views/
-│   ├── Account/
-│   ├── AdminTour/
+│   ├── Account/                   # Login, Register
+│   ├── AdminTour/                 # Index, TourList, CreateTour, UpdateTour...
 │   ├── Dashboard/
-│   ├── Reservation/
-│   ├── Tour/
+│   ├── Reservation/               # Index, Create
+│   ├── Tour/                      # TourList, TourDetail, TourDestination
 │   └── Shared/
+│       ├── _TravelinLayout.cshtml
+│       ├── _AdminTourLayout.cshtml
+│       └── Components/
+├── Settings/
+│   └── DatabaseSettings.cs
 └── appsettings.json
 ```
 
 ---
 
-## ⚙️ Getting Started
+## ⚙️ Kurulum
 
-### Prerequisites
+### Gereksinimler
 - [.NET 8 SDK](https://dotnet.microsoft.com/download)
 - [MongoDB](https://www.mongodb.com/try/download/community)
 
-### 1. Clone the repository
+### 1. Repoyu klonla
 ```bash
 git clone https://github.com/yourusername/Project3Travelin.git
 cd Project3Travelin
 ```
 
-### 2. Configure database
+### 2. Veritabanı yapılandırması
+`appsettings.json` dosyasını güncelle:
 ```json
 {
   "DatabaseSettings": {
@@ -155,56 +187,56 @@ cd Project3Travelin
 }
 ```
 
-### 3. Run
+### 3. Çalıştır
 ```bash
 dotnet run
 ```
 
-### 4. Default admin credentials
-| Field | Value |
+### 4. Varsayılan admin bilgileri
+| Alan | Değer |
 |---|---|
-| Username | `admin` |
-| Password | `Admin123!` |
-| Role | Admin |
+| Kullanıcı Adı | `admin` |
+| Şifre | `Admin123!` |
+| Rol | Admin |
 
-> ⚠️ Change the default password after first login via the Settings page.
+> ⚠️ İlk girişten sonra Ayarlar sayfasından şifreyi değiştir.
 
 ---
 
-## 🔐 Role-Based Access
+## 🔐 Rol Tabanlı Erişim
 
-| Role | Redirect | Access |
+| Rol | Giriş Sonrası Yönlendirme | Erişim |
 |---|---|---|
-| `Admin` | `/AdminTour/Index` | Full admin panel |
-| `User` | `/Dashboard/Index` | Customer site |
+| `Admin` | `/AdminTour/Index` | Tam admin paneli |
+| `User` | `/Dashboard/Index` | Müşteri sitesi |
 
 ---
 
-## 💬 Review Flow
+## 💬 Yorum Akışı
 
 ```
-User submits review  →  IsStatus = false (pending)
-         ↓
-Admin approves in Comment Management
-         ↓
-IsStatus = true (published)  →  Visible on Tour Detail
+Kullanıcı yorum gönderir  →  IsStatus = false (beklemede)
+            ↓
+Admin, Yorum Yönetimi'nden onaylar
+            ↓
+IsStatus = true (yayında)  →  Tur Detay sayfasında görünür
 ```
 
-## 🗓️ Reservation Flow
+## 🗓️ Rezervasyon Akışı
 
 ```
-Tour Detail → "Rezervasyon Yap"
-         ↓
-Reservation/Create  →  Status: "Beklemede"
-         ↓
-Admin approves  →  Status: "Onaylandı"
-         ↓
-User sees updated status in "Rezervasyonlarım"
+Tur Detayı → "Rezervasyon Yap"
+            ↓
+Rezervasyon oluşturulur  →  Durum: "Beklemede"
+            ↓
+Admin onaylar  →  Durum: "Onaylandı"
+            ↓
+Kullanıcı "Rezervasyonlarım"da güncellenen durumu görür
 ```
 
 ---
 
-## 📦 NuGet Packages
+## 📦 NuGet Paketleri
 
 ```
 AspNetCore.Identity.MongoDbCore
@@ -216,6 +248,6 @@ AutoMapper.Extensions.Microsoft.DependencyInjection
 
 <div align="center">
 
-Built with ❤️ using **ASP.NET Core MVC** & **MongoDB**
+❤️ ile **ASP.NET Core MVC** & **MongoDB** kullanılarak geliştirildi
 
 </div>
